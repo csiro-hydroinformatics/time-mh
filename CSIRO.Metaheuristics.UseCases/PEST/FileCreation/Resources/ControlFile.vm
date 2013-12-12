@@ -1,0 +1,35 @@
+﻿pcf
+* control data
+$ControlData.RestartFile.ToString() $ControlData.PestMode.ToString()
+$ControlData.NumParameters $ControlData.NumObservations $ControlData.NumParameterGroups $ControlData.NumPrior $ControlData.NumObservationGroups
+$ControlData.NumTemplateFiles $ControlData.NumInstructionFiles $ControlData.PestPrecision $ControlData.Point.ToString() $ControlData.Numcom $ControlData.Jacfile $ControlData.Messfile
+$ControlData.Rlambda1 $ControlData.Rlamfac $ControlData.Phiratsuf $ControlData.Phiredlam $ControlData.numlam
+$ControlData.Relparmax $ControlData.facparmax $ControlData.facorig
+$ControlData.Phiredswh
+$ControlData.noptmax $ControlData.phiredstp $ControlData.nphistp $ControlData.nphinored $ControlData.relparstp $ControlData.nrelpar
+$ControlData.icov $ControlData.icor $ControlData.ieig
+* parameter groups
+#foreach($group in $ControlData.parameterGroups)
+$group.ParameterGroupName $group.IncrementType.ToString() $group.DerivativeIncrement $group.DerivativeIncrementLowerBound $group.ForwardCentral.ToString() $group.DerivativeIncrementMultiplier $group.DerivativeMethodCalculation.ToString()
+#end
+* parameter data
+#foreach($parameter in $ControlData.Parameters)
+$parameter.ParameterName $parameter.TransformType.ToString() $parameter.ChangeLimitedType.ToString() $parameter.InitialValue $parameter.MinValue $parameter.MaxValue $parameter.ParameterGroup $parameter.Scale $parameter.Offset $parameter.DerCom
+#end
+#foreach ($pTied in $ControlData.TiedParameters)
+$pTied.ParameterName $pTied.TiedParameterName
+#end
+* observation groups
+#foreach ($ObservationGroup in $ControlData.ObservationGroupNames)
+$ObservationGroup
+#end
+* observation data
+#foreach($Observation in $ControlData.Observations)
+$Observation.ObservationName $Observation.ObservationValue $Observation.Weight $Observation.ObservationGroupName
+#end
+* model command line
+$ControlData.ModelCommandLine
+* model input/output
+#foreach($IO in $ControlData.ModelIO)
+$IO.PestFile $IO.ModelFile
+#end

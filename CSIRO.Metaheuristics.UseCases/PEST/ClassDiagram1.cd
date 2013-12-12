@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CSIRO.Metaheuristics.UseCases.PEST.PestControlData" Collapsed="true">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JIVsFmCBLiVBwJtkCUgRNAkkCihZgQjIEIECDQCFQjo=</HashCode>
+      <FileName>PEST\ControlData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.UseCases.PEST.QueueContainer" Collapsed="true">
+    <Position X="5.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>PEST\MessageQueueHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.UseCases.PEST.MessageQueueHelper" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PEST\MessageQueueHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.UseCases.PEST.MessageQueueModelRunner" Collapsed="true">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAgAAABABAAIQAAAAAgAAABgIAAAAAAAA=</HashCode>
+      <FileName>PEST\MessageQueueModelRunner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.UseCases.PEST.PestEngine&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAJAQAAAgAAAIAAEAAIAAIiIAAAAIAAAAAABCAA=</HashCode>
+      <FileName>PEST\PESTEvolutionEngine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.UseCases.PEST.PestObjectiveEvaluator&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAABAAAAAIAAAAAAAQAgAAEAIAAAQ=</HashCode>
+      <FileName>PEST\PestObjectiveEvaluator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.UseCases.PEST.PestTest" Collapsed="true">
+    <Position X="8.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PEST\pesttest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.UseCases.PEST.FileCreation.ControlFileCreator" Collapsed="true">
+    <Position X="8.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAEBAAAEQAAAAAAUACAAAAAMAAAAAAgAAAAAIAAA=</HashCode>
+      <FileName>PEST\FileCreation\ControlFileCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.UseCases.PEST.FileCreation.InstructionFileCreator" Collapsed="true">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAQAAAAAAAGAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PEST\FileCreation\InstructionFileCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.UseCases.PEST.FileCreation.PestFileCreator" Collapsed="true">
+    <Position X="6.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PEST\FileCreation\PestFileCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.UseCases.PEST.FileCreation.TemplateFileCreator" Collapsed="true">
+    <Position X="6.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAACAAAAAAAAAUAAAAAAAAAAAAAAkAAAACAAQA=</HashCode>
+      <FileName>PEST\FileCreation\TemplateFileCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

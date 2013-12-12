@@ -1,0 +1,4 @@
+﻿pif @
+#foreach($date in $Dates)
+l1 @,@ !$date!
+#end

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Need to make the objective interfaces more generic. Push up. J-M to do.">
+    <Position X="14.452" Y="7.018" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Meta parametyer sets: the overall structure is halfway between very generic and E2 specific. We'll revisit. J-M to document a target in discussion with Zhen and Andrew">
+    <Position X="4.142" Y="7.537" Height="1.229" Width="3.808" />
+  </Comment>
+  <Class Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.E2CatchmentRREvaluator" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="1.5" Width="3" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.E2CatchmentRREvaluator.MockMultiObjectiveEvaluator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SourceCalibrationSimpleAWBM\E2CatchmentRREvaluator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Interface Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.E2CatchmentRREvaluator.IMockSingleObjective" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SourceCalibrationSimpleAWBM\E2CatchmentRREvaluator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Class Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.E2CatchmentRREvaluator.MockNashSutcliffeEvaluator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SourceCalibrationSimpleAWBM\E2CatchmentRREvaluator.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.E2CatchmentRREvaluator.MockBiasEvaluator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SourceCalibrationSimpleAWBM\E2CatchmentRREvaluator.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.E2CatchmentRREvaluator.TestSourceObjectiveScores" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SourceCalibrationSimpleAWBM\E2CatchmentRREvaluator.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAABAAAAAAAAAAAAAAAAAAAAAAAAgAAAAQ=</HashCode>
+      <FileName>SourceCalibrationSimpleAWBM\E2CatchmentRREvaluator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.LumpedAWBMFactory" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <NestedTypes>
+      <Class Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.LumpedAWBMFactory.MinMax" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SourceCalibrationSimpleAWBM\LumpedAWBMFactory.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAACAAAAACAEAAAAIAAAABAAFAAAAAAAAQAAgAAAAA=</HashCode>
+      <FileName>SourceCalibrationSimpleAWBM\LumpedAWBMFactory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="parameterSet" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.MetaParameterSet" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="1.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.MetaParameterSet.ParameterValRange" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SourceCalibrationSimpleAWBM\MetaParameterSet.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="ParameterMapping" Type="System.Collections.Generic.Dictionary&lt;TKey, TValue&gt;">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.464" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAGAIAMAgCIsAAAAABAABIAgAAEAAAAAAIAABABBo=</HashCode>
+      <FileName>SourceCalibrationSimpleAWBM\MetaParameterSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ParameterMapping" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.ReflectedParameter">
+    <Position X="8" Y="2.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAgIBEAAAAAAQIgAAAAARAAIAAAIAACQgiAAgAAAQ=</HashCode>
+      <FileName>SourceCalibrationSimpleAWBM\ReflectedParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.Source.UseCases.SourceCalibrationSimpleAWBM.ReflectedParameterFactory">
+    <Position X="0.5" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>SourceCalibrationSimpleAWBM\ReflectedParameterFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Collections.Generic.Dictionary&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="8.75" Y="2" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="CSIRO.Metaheuristics.IHyperCube&lt;T&gt;" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="CSIRO.Metaheuristics.IObjectiveScores" Collapsed="true">
+    <Position X="1" Y="6.5" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
