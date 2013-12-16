@@ -8,7 +8,7 @@
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Test Nuget packageing for TIME</releaseNotes>
+    <releaseNotes>Test Nuget packaging for TIME</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>TIME AWRA test</tags>
   </metadata>

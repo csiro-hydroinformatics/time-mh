@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{837E5863-795F-4B4F-B17E-477EC238168C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CalibrateGriddedModel</RootNamespace>
+    <AssemblyName>CalibrateGriddedModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SIMULATED_PROCESS_TIMES;CELL_WEIGHTED_SUMS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;SIMULATED_PROCESS_TIMES;BARRIER_AT_ITERATION_END</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;HANDLE_MODEL_EXCEPTIONS;CELL_WEIGHTED_SUMS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;HANDLE_MODEL_EXCEPTIONS;CELL_WEIGHTED_SUMS</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CalibrateGriddedModel.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommandLineParser">
+      <HintPath>..\..\Solutions\packages\CommandLineArgumentsParser.2.6.0.3\lib\net40\CommandLineParser.dll</HintPath>
+    </Reference>
+    <Reference Include="CSIRO.Metaheuristics, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Solutions\packages\CSIRO.Metaheuristics.0.7.0.0\lib\net40\CSIRO.Metaheuristics.dll</HintPath>
+    </Reference>
+    <Reference Include="CSIRO.Metaheuristics.DataModel">
+      <HintPath>..\..\Solutions\packages\CSIRO.Metaheuristics.DataModel.0.7.0.25467\lib\net40\CSIRO.Metaheuristics.DataModel.dll</HintPath>
+    </Reference>
+    <Reference Include="CSIRO.Metaheuristics.Logging">
+      <HintPath>..\..\Solutions\packages\CSIRO.Metaheuristics.Logging.0.7.0.0\lib\net40\CSIRO.Metaheuristics.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="CSIRO.Metaheuristics.Parallel">
+      <HintPath>..\..\Solutions\packages\CSIRO.Metaheuristics.Parallel.0.7.0.0\lib\net40\CSIRO.Metaheuristics.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="CSIRO.Metaheuristics.R">
+      <HintPath>..\..\Solutions\packages\CSIRO.Metaheuristics.R.0.7.0.0\lib\net40\CSIRO.Metaheuristics.R.dll</HintPath>
+    </Reference>
+    <Reference Include="CSIRO.Sys, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Solutions\packages\CSIRO.Metaheuristics.R.0.7.0.0\lib\net40\CSIRO.Sys.dll</HintPath>
+    </Reference>
+    <Reference Include="CSIRO.Utilities">
+      <HintPath>..\..\Solutions\packages\CSIRO.Utilities.0.7.0.0\lib\net40\CSIRO.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\Solutions\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\Solutions\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\Solutions\packages\IronPython.2.7.4\lib\Net40\IronPython.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Modules, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\Solutions\packages\IronPython.2.7.4\lib\Net40\IronPython.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.SQLite, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\IronPython.2.7.4\lib\Net40\IronPython.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython.Wpf, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\IronPython.2.7.4\lib\Net40\IronPython.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\Solutions\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\Solutions\packages\IronPython.2.7.4\lib\Net40\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\..\Solutions\packages\IronPython.2.7.4\lib\Net40\Microsoft.Scripting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.AspNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\..\Solutions\packages\IronPython.2.7.4\lib\Net40\Microsoft.Scripting.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\Solutions\packages\IronPython.2.7.4\lib\Net40\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="MPI">
+      <HintPath>..\..\Solutions\packages\CSIRO.Metaheuristics.Parallel.0.7.0.0\lib\net40\MPI.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Solutions\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RDotNet">
+      <HintPath>..\..\Solutions\packages\R.NET.1.5.6\lib\net40\RDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="RDotNet.NativeLibrary">
+      <HintPath>..\..\Solutions\packages\R.NET.1.5.6\lib\net40\RDotNet.NativeLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.Hpc.Scheduler, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\..\ThirdParty\Microsoft.Hpc.Scheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="TIME">
+      <HintPath>..\..\Solutions\packages\TIME_test_nuget.0.1\lib\net40\TIME.dll</HintPath>
+    </Reference>
+    <Reference Include="TIME.Metaheuristics.Parallel">
+      <HintPath>..\..\Solutions\packages\TIME.Metaheuristics.Parallel.1.0.0.0\lib\net40\TIME.Metaheuristics.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="TIME.Models.RainfallRunoff">
+      <HintPath>..\..\Solutions\packages\TIME_test_nuget.0.1\lib\net40\TIME.Models.RainfallRunoff.dll</HintPath>
+    </Reference>
+    <Reference Include="TIME.Tools">
+      <HintPath>..\..\Solutions\packages\TIME_test_nuget.0.1\lib\net40\TIME.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="TIME.Tools.Metaheuristics">
+      <HintPath>..\..\Solutions\packages\TIME_test_nuget.0.1\lib\net40\TIME.Tools.Metaheuristics.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AwraModelFacade.cs" />
+    <Compile Include="Exceptions\ConfigurationException.cs" />
+    <Compile Include="ExtensionMethods\Math.cs" />
+    <Compile Include="ExtensionMethods\SerializationHelper.cs" />
+    <Compile Include="GridCellModel.cs" />
+    <Compile Include="MpiWorkPacket.cs" />
+    <Compile Include="Objectives\CatchmentStatisticsEvaluator.cs" />
+    <Compile Include="Objectives\ObjectiveScoresHelper.cs" />
+    <Compile Include="PointTimeSeriesSimulationDictionaryAdapter.cs" />
+    <Compile Include="MpiTimeSeries.cs" />
+    <Compile Include="Tests\GlobalDefinitionTests.cs" />
+    <Compile Include="Tests\InMemoryLoggerTests.cs" />
+    <Compile Include="Tests\MathTests.cs" />
+    <Compile Include="ICatchmentCellModelRunner.cs" />
+    <Compile Include="MpiGriddedCatchmentObjectiveEvaluator.cs" />
+    <Compile Include="MasterSystem.cs" />
+    <Compile Include="ProgramArguments.cs" />
+    <Compile Include="SlaveActions.cs" />
+    <Compile Include="GriddedCatchmentToyModel.cs" />
+    <Compile Include="SlaveSystem.cs" />
+    <Compile Include="Objectives\MultiCatchmentCompositeObjectiveEvaluator.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExtensionMethods\DefinitionTestHelper.cs" />
+    <Compile Include="Tests\ObjectiveScoresHelperTests.cs" />
+    <Compile Include="WinHpcSchedulerJob.cs" />
+    <Compile Include="WorkAllocation\WorkPackage.cs" />
+    <Compile Include="WorkAllocation\Allocator.cs" />
+    <Compile Include="WorkAllocation\BalancedCellCountAllocator.cs" />
+    <Compile Include="WorkAllocation\IWorkAllocator.cs" />
+    <Compile Include="Tests\BalancedCellCountAllocationTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Diagrams\ClassDiagram1.cd" />
+    <None Include="Diagrams\ClassDiagram_AWRA_L.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AWRA-L\AWRALModel\AWRALModel.csproj">
+      <Project>{01951855-30cd-49ec-9d52-836f075dddf8}</Project>
+      <Name>AWRALModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
