@@ -156,6 +156,7 @@
     <Compile Include="WorkAllocation\WorkPackage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Diagrams\ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

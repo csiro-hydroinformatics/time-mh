@@ -11,7 +11,7 @@ namespace TIME.Metaheuristics.Parallel.Objectives
     ///   Composite objective evaluator for catchments.
     ///   Loosely corresponds to CalibrateParallelModel.Objectives.MultiCatchmentCompositeObjectiveCalculation
     /// </summary>
-    public class MultiCatchmentCompositeObjectiveEvaluator : IClonableObjectiveEvaluator<MpiSysConfig>, IDisposable
+    public class MultiCatchmentCompositeObjectiveEvaluator : MpiObjectiveEvaluator, IDisposable
     {
         private readonly MpiGriddedCatchmentObjectiveEvaluator mpiEvaluator;
         private readonly CompositeObjectiveEvaluator<MpiSysConfig> rEvaluator;
@@ -39,7 +39,7 @@ namespace TIME.Metaheuristics.Parallel.Objectives
         /// </summary>
         /// <param name="systemConfiguration"> The system configuration. </param>
         /// <returns> The composite objective score for the entire set of catchments. </returns>
-        IObjectiveScores<MpiSysConfig> IObjectiveEvaluator<MpiSysConfig>.EvaluateScore(MpiSysConfig systemConfiguration)
+        public override IObjectiveScores<MpiSysConfig> EvaluateScore(MpiSysConfig systemConfiguration)
         {
             simulationTimer.Start();
             mpiEvaluator.Execute(systemConfiguration);
@@ -54,28 +54,6 @@ namespace TIME.Metaheuristics.Parallel.Objectives
             return rEvaluator.CalculateCompositeObjective(scores, systemConfiguration);
         }
 
-        /// <summary>
-        ///   Gets whether this object returns a deep clone of itself and its properties.
-        ///   This may vary through its lifetime.
-        /// </summary>
-        bool CSIRO.Sys.ICloningSupport.SupportsDeepCloning
-        {
-            get { return false; }
-        }
-
-        /// <summary>
-        ///   Gets whether this object returns a clone deemed thread-safe, i.e.
-        ///   for write access. This may vary through its lifetime.
-        /// </summary>
-        /// <example>
-        ///   A TIME model runner may return a clone of itself with the same input time series,
-        ///   but deep-copy the output time series recorded.
-        /// </example>
-        bool CSIRO.Sys.ICloningSupport.SupportsThreadSafeCloning
-        {
-            get { return false; }
-        }
-
         public int SimulationCount { get { return mpiEvaluator.Iterations; } }
 
         public TimeSpan SimulationTime
@@ -86,15 +64,6 @@ namespace TIME.Metaheuristics.Parallel.Objectives
         public int TotalCellCount
         {
             get { return (mpiEvaluator != null) ? mpiEvaluator.TotalCellCount : 0; }
-        }
-
-        /// <summary>
-        ///   Clones this instance.
-        /// </summary>
-        /// <returns> The clone </returns>
-        IClonableObjectiveEvaluator<MpiSysConfig> CSIRO.Sys.ICloningSupport<IClonableObjectiveEvaluator<MpiSysConfig>>.Clone()
-        {
-            throw new NotSupportedException();
         }
 
         #endregion

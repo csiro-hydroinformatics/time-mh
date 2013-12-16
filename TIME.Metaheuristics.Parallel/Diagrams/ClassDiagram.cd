@@ -29,21 +29,44 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAIMAAAAADAAAAAAAQAAAAAQAAAAEAAAAAAAgAAAASA=</HashCode>
+      <HashCode>AAIMAAAAACAAAAAAAQAAAAAQAAAAEAAAAAAAAAAAACQ=</HashCode>
       <FileName>Objectives\MultiCatchmentCompositeObjectiveEvaluator.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="mpiEvaluator" />
+      <Field Name="rEvaluator" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="TIME.Metaheuristics.Parallel.MpiGriddedCatchmentObjectiveEvaluator" Collapsed="true">
+  <Class Name="TIME.Metaheuristics.Parallel.MpiGriddedCatchmentObjectiveEvaluator">
     <Position X="7" Y="5.5" Width="3" />
     <TypeIdentifier>
       <HashCode>EAIICAAAQCQICAQAAgADAAYQAAgAKACAIGgAgQgCAgA=</HashCode>
       <FileName>MpiGriddedCatchmentObjectiveEvaluator.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MyWork" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CSIRO.Metaheuristics.Parallel.Objectives.CompositeObjectiveEvaluator&lt;TSysConfig&gt;" Collapsed="true">
+    <Position X="11.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TIME.Metaheuristics.Parallel.MpiWorkPacket" Collapsed="true">
+    <Position X="12" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>MpiWorkPacket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TIME.Metaheuristics.Parallel.WorkAllocation.WorkPackage">
+    <Position X="12" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WorkAllocation\WorkPackage.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="TIME.Metaheuristics.Parallel.ICatchmentCellModelRunner">
     <Position X="3.75" Y="0.5" Width="2.25" />
