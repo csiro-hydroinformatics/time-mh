@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 
 namespace TIME.Metaheuristics.Parallel.ExtensionMethods
 {
+    // TODO: probably duplicates CSIRO.Utilities and/or TIME.Tools.*
     public static class SerializationHelper
     {
         /// <summary>

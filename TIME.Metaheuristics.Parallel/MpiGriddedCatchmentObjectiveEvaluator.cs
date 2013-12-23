@@ -8,6 +8,7 @@ using CSIRO.Metaheuristics;
 using CSIRO.Metaheuristics.Parallel.Objectives;
 using CSIRO.Metaheuristics.Parallel.SystemConfigurations;
 using TIME.Metaheuristics.Parallel.Exceptions;
+using TIME.Metaheuristics.Parallel.Execution;
 using TIME.Metaheuristics.Parallel.ExtensionMethods;
 using TIME.Metaheuristics.Parallel.Objectives;
 using TIME.Metaheuristics.Parallel.WorkAllocation;
@@ -15,11 +16,8 @@ using MPI;
 using TIME.DataTypes;
 using TIME.Tools.Collections;
 using TIME.Tools.Metaheuristics;
-using TIME.Tools.Metaheuristics.Objectives;
 using TIME.Tools.Metaheuristics.Persistence;
 using TIME.Tools.Metaheuristics.Persistence.Gridded;
-using TIME.Tools.Metaheuristics.SystemConfigurations;
-using TIME.Tools.ModelExecution;
 
 namespace TIME.Metaheuristics.Parallel
 {
@@ -28,7 +26,7 @@ namespace TIME.Metaheuristics.Parallel
     ///   Code for both the master (MPI.Communicator.world.Rank == 0) and worker/slave processes (rank > 0) is contained here.
     ///   Loosely corresponds to CalibrateParallelModel.MultiCatchmentCompositeObjectiveCalculation and MpiObjectiveEvaluator.
     /// </summary>
-    public sealed class MpiGriddedCatchmentObjectiveEvaluator : IDisposable
+    public sealed class MpiGriddedCatchmentObjectiveEvaluator : IEnsembleObjectiveEvaluator<MpiSysConfig>, IDisposable
     {
         /// <summary>
         ///   Class logger instance.
@@ -65,6 +63,15 @@ namespace TIME.Metaheuristics.Parallel
             GlobalDefinition = SerializationHelper.XmlDeserialize<GlobalDefinition>(globalDefinitionFileInfo);
             Log.DebugFormat("Rank {0}: global definition complete", WorldRank);
             AllocateWork(new BalancedCellCountAllocator(GlobalDefinition));
+        }
+
+        public IObjectiveScores<MpiSysConfig>[] EvaluateScore(MpiSysConfig systemConfiguration)
+        {
+            this.Execute(systemConfiguration);
+            var c = this.CatchmentScores;
+            var result = new IObjectiveScores<MpiSysConfig>[c.Length];
+            c.CopyTo(result, 0);
+            return result;
         }
 
         #region IDisposable Members
@@ -199,7 +206,7 @@ namespace TIME.Metaheuristics.Parallel
 #if USE_TOY_MODEL
                         Models[i] = new GriddedCatchmentToyModel(MyWork.Cells[i]);
 #else
-                        Models[i] = AwraModelFacade.CreateCellEvaluator(cellDefinition);
+                        Models[i] = GridModelHelper.CreateCellEvaluator(cellDefinition);
 #endif
                     }
                     Log.DebugFormat("Rank {0}: models created", WorldRank);
@@ -526,6 +533,9 @@ namespace TIME.Metaheuristics.Parallel
         /// </returns>
         private Dictionary<string, SerializableDictionary<string, MpiTimeSeries>> EvaluateModels(MpiSysConfig parameters)
         {
+
+            OnBeforeModelRuns();
+
             // For each catchment we may have 1 or more cells, hence the List<MpiObjectiveScores> to store the variable list of scores for each cell
             // from a given catchment.
             Dictionary<string, SerializableDictionary<string, MpiTimeSeries>> partialCatchmentResults =
@@ -564,6 +574,13 @@ namespace TIME.Metaheuristics.Parallel
             }
 
             return partialCatchmentResults;
+        }
+
+        public event EventHandler BeforeModelRuns;
+
+        private void OnBeforeModelRuns()
+        {
+            if (BeforeModelRuns != null) BeforeModelRuns(this, null);
         }
 
         /// <summary>

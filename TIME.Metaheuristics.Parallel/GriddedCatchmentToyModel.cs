@@ -1,13 +1,10 @@
 ﻿using System;
-using CSIRO.Metaheuristics;
-using CSIRO.Metaheuristics.Objectives;
 using CSIRO.Metaheuristics.Parallel.SystemConfigurations;
 using CSIRO.Metaheuristics.Tests;
 using TIME.DataTypes;
+using TIME.Metaheuristics.Parallel.Execution;
 using TIME.Tools.Collections;
-using TIME.Tools.Metaheuristics.Persistence;
 using TIME.Tools.Metaheuristics.Persistence.Gridded;
-using TIME.Tools.Metaheuristics.SystemConfigurations;
 
 namespace TIME.Metaheuristics.Parallel
 {

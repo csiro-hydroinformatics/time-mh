@@ -3,7 +3,7 @@ using TIME.Tools;
 using TIME.Tools.Collections;
 using TIME.Tools.Metaheuristics.Persistence.Gridded;
 
-namespace TIME.Metaheuristics.Parallel
+namespace TIME.Metaheuristics.Parallel.Execution
 {
     public class GridCellModel : ICatchmentCellModelRunner
     {

@@ -90,7 +90,7 @@ namespace TIME.Metaheuristics.Parallel
             SeedParametersFile = arguments.ParameterDefinitions.FullName;
             LogFileName = Path.Combine(arguments.OutputPath.FullName, arguments.LogFile);
             OutputFileName = Path.Combine(arguments.OutputPath.FullName, arguments.ResultsFile);
-            TemplateParameterSet = AwraModelFacade.LoadParameterSpace(arguments.ParameterDefinitions.FullName);
+            TemplateParameterSet = GridModelHelper.LoadParameterSpace(arguments.ParameterDefinitions.FullName);
         //DebugHelpers.MpiSleep(14000);
             evaluator = new MultiCatchmentCompositeObjectiveEvaluator(
                 arguments.GlobalDefinition, arguments.ObjectiveDefinition, arguments.CreateCompositeEvaluator());
@@ -252,7 +252,7 @@ namespace TIME.Metaheuristics.Parallel
 
             string parameterSetPath = Path.Combine(OutputPath.FullName, "BestParamSet.xml");
             Log.InfoFormat("Root: saving reseed parameters to '{0}'", parameterSetPath);
-            AwraModelFacade.WriteParameters<MpiSysConfig>(Results, SeedParametersFile, parameterSetPath);
+            GridModelHelper.WriteParameters<MpiSysConfig>(Results, SeedParametersFile, parameterSetPath);
         }
 
         /// <summary>

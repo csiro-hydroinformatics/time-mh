@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CSIRO.Metaheuristics.Parallel.SystemConfigurations;
+using TIME.Metaheuristics.Parallel.Execution;
 using TIME.Metaheuristics.Parallel.ExtensionMethods;
 using TIME.Metaheuristics.Parallel.SystemConfigurations;
 using TIME.Tools;
@@ -13,7 +14,7 @@ using TIME.Tools.Persistence.DataMapping;
 
 namespace TIME.Metaheuristics.Parallel
 {
-    public class AwraModelFacade
+    public class GridModelHelper
     {
         public static MpiSysConfig LoadParameterSpace(string filename)
         {
@@ -38,6 +39,12 @@ namespace TIME.Metaheuristics.Parallel
             InputOutputHelper.SerializeAsXML<ParameterSet>(pset, outfilename);
 
         }
+
+        public static GlobalDefinition LoadGlobalDefinition(string filename)
+        {
+            return InputOutputHelper.DeserializeFromXML<GlobalDefinition>(filename);
+        }
+
 
     }
 }

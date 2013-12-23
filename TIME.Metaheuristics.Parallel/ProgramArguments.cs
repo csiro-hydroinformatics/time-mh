@@ -29,7 +29,7 @@ namespace TIME.Metaheuristics.Parallel
         //[FileArgument('c', "globalCompoundObjective", Description = "Defines the R compound objective function used to produce the global score from the catchment scores", FileMustExist = true, Optional = false)]
         public abstract FileInfo GlobalCompoundObjectiveDefinition{ get; set; }
 
-        public abstract CompositeObjectiveEvaluator<MpiSysConfig> CreateCompositeEvaluator();
+        public abstract CompositeObjectiveCalculation<MpiSysConfig> CreateCompositeEvaluator();
 
         //[FileArgument('i', "inputParams", Description = "Input parameter definitions", FileMustExist = true, Optional = false)]
         public abstract FileInfo ParameterDefinitions{ get; set; }

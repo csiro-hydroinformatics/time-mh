@@ -32,29 +32,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSIRO.Metaheuristics, Version=0.7.0.3, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSIRO.Metaheuristics, Version=0.7.0.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.0.3\lib\net40\CSIRO.Metaheuristics.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.0.5\lib\net40\CSIRO.Metaheuristics.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Metaheuristics.DataModel, Version=0.7.0.3, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSIRO.Metaheuristics.DataModel, Version=0.7.0.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.DataModel.0.7.0.3\lib\net40\CSIRO.Metaheuristics.DataModel.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Metaheuristics.DataModel.0.7.0.5\lib\net40\CSIRO.Metaheuristics.DataModel.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Metaheuristics.Logging, Version=0.7.0.3, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSIRO.Metaheuristics.Logging, Version=0.7.0.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.Logging.0.7.0.3\lib\net40\CSIRO.Metaheuristics.Logging.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Metaheuristics.Logging.0.7.0.5\lib\net40\CSIRO.Metaheuristics.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Metaheuristics.Parallel, Version=0.7.0.3, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSIRO.Metaheuristics.Parallel, Version=0.7.0.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.Parallel.0.7.0.3\lib\net40\CSIRO.Metaheuristics.Parallel.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Metaheuristics.Parallel.0.7.0.5\lib\net40\CSIRO.Metaheuristics.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Sys, Version=0.7.0.3, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSIRO.Sys, Version=0.7.0.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.Parallel.0.7.0.3\lib\net40\CSIRO.Sys.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Metaheuristics.Parallel.0.7.0.5\lib\net40\CSIRO.Sys.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Utilities, Version=0.7.0.3, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSIRO.Utilities, Version=0.7.0.5, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Utilities.0.7.0.3\lib\net40\CSIRO.Utilities.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Utilities.0.7.0.5\lib\net40\CSIRO.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.0.2\lib\net40\EntityFramework.dll</HintPath>
@@ -96,7 +96,7 @@
     </Reference>
     <Reference Include="MPI, Version=1.1.2.0, Culture=neutral, PublicKeyToken=29b4a045737654fe, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.Parallel.0.7.0.3\lib\net40\MPI.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Metaheuristics.Parallel.0.7.0.5\lib\net40\MPI.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -112,30 +112,31 @@
     <Reference Include="System.Xml" />
     <Reference Include="TIME, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TIME_test_nuget.0.1.1\lib\net40\TIME.dll</HintPath>
+      <HintPath>..\packages\TIME_test_nuget.0.1.2\lib\net40\TIME.dll</HintPath>
     </Reference>
     <Reference Include="TIME.Models.RainfallRunoff, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TIME_test_nuget.0.1.1\lib\net40\TIME.Models.RainfallRunoff.dll</HintPath>
+      <HintPath>..\packages\TIME_test_nuget.0.1.2\lib\net40\TIME.Models.RainfallRunoff.dll</HintPath>
     </Reference>
     <Reference Include="TIME.Tools, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TIME_test_nuget.0.1.1\lib\net40\TIME.Tools.dll</HintPath>
+      <HintPath>..\packages\TIME_test_nuget.0.1.2\lib\net40\TIME.Tools.dll</HintPath>
     </Reference>
     <Reference Include="TIME.Tools.Metaheuristics, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TIME_test_nuget.0.1.1\lib\net40\TIME.Tools.Metaheuristics.dll</HintPath>
+      <HintPath>..\packages\TIME_test_nuget.0.1.2\lib\net40\TIME.Tools.Metaheuristics.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AwraModelFacade.cs" />
+    <Compile Include="GridModelHelper.cs" />
     <Compile Include="Exceptions\ConfigurationException.cs" />
+    <Compile Include="Execution\GriddedModelRunner.cs" />
     <Compile Include="ExtensionMethods\DefinitionTestHelper.cs" />
     <Compile Include="ExtensionMethods\Math.cs" />
     <Compile Include="ExtensionMethods\SerializationHelper.cs" />
-    <Compile Include="GridCellModel.cs" />
+    <Compile Include="Execution\GridCellModel.cs" />
     <Compile Include="GriddedCatchmentToyModel.cs" />
-    <Compile Include="ICatchmentCellModelRunner.cs" />
+    <Compile Include="Execution\ICatchmentCellModelRunner.cs" />
     <Compile Include="MasterSystem.cs" />
     <Compile Include="MpiGriddedCatchmentObjectiveEvaluator.cs" />
     <Compile Include="MpiTimeSeries.cs" />

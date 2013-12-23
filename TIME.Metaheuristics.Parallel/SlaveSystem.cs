@@ -13,7 +13,7 @@ namespace TIME.Metaheuristics.Parallel
     /// although the MPI communications and model running is defined in <see cref="MpiGriddedCatchmentObjectiveEvaluator"/>,
     /// particularly the RunSlave() method.
     /// </summary>
-    public class SlaveSystem
+    public class SlaveSystem : IDisposable
     {
         //private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private readonly FileInfo globalDefinitionFileInfo;
@@ -28,17 +28,45 @@ namespace TIME.Metaheuristics.Parallel
         {
             this.globalDefinitionFileInfo = globalDefinitionFileInfo;
             objectivesDefinition = objectivesDefinitionFileInfo;
+            MpiSlave = new MpiGriddedCatchmentObjectiveEvaluator(globalDefinitionFileInfo, objectivesDefinition);
         }
+
+        public MpiGriddedCatchmentObjectiveEvaluator MpiSlave;
 
         /// <summary>
         ///   Runs the slave.
         /// </summary>
         public void RunSlave()
         {
-            using (MpiGriddedCatchmentObjectiveEvaluator mpiSlave = new MpiGriddedCatchmentObjectiveEvaluator(globalDefinitionFileInfo, objectivesDefinition))
+            MpiSlave.RunSlave();
+        }
+
+        private bool disposed = false;
+
+        /// <summary>
+        ///   Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        ///   Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"> <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources. </param>
+        private void Dispose(bool disposing)
+        {
+            if (!disposed)
             {
-                mpiSlave.RunSlave();
+                if (disposing)
+                {
+                    MpiSlave.Dispose();
+                }
+                disposed = true;
             }
         }
+
     }
 }
