@@ -313,7 +313,7 @@ namespace TIME.Metaheuristics.Parallel
                     return new ShuffledComplexEvolution<MpiSysConfig>.MaxShuffleTerminationCondition();
                 default:
                 case TerminationCriteria.ConvergenceThreshold:
-                    Log.Debug("Root: Using coefficient of variation termination condition");
+                    Log.Debug(string.Format("Root: Using coefficient of variation termination condition, with a maximum runtime of approx. {0} hours", WallClock));
                     return new ShuffledComplexEvolution<MpiSysConfig>.CoefficientOfVariationTerminationCondition(
                         threshold: ConvergenceCriterionCvThreshold, maxHours: WallClock);
             }
