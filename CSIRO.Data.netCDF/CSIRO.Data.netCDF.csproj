@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>..\ThirdParty\TIME\IKVM.OpenJDK.Core.dll</HintPath>
+      <HintPath>..\packages\IKVM.7.3.4830.0\lib\IKVM.OpenJDK.Core.dll</HintPath>
     </Reference>
-    <Reference Include="netcdfAll-4.2">
-      <HintPath>..\ThirdParty\TIME\netcdfAll-4.2.dll</HintPath>
+    <Reference Include="netcdfAll">
+      <HintPath>..\packages\CSIRO.netCDF_IKVM.4.3.20\lib\net40\netcdfAll.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,6 +49,9 @@
     <Compile Include="DisposableNetcdfFile.cs" />
     <Compile Include="NetCdfHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

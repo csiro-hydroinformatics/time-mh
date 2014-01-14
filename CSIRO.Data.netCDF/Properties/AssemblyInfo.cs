@@ -10,9 +10,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "CSIRO" )]
 [assembly: AssemblyProduct( "CSIRO.Data.netCDF" )]
-[assembly: AssemblyCopyright( "Copyright © CSIRO 2011" )]
-[assembly: AssemblyTrademark( "" )]
-[assembly: AssemblyCulture( "" )]
+[assembly: AssemblyCopyright("Copyright © CSIRO 2013")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion( "1.0.0.0" )]
-[assembly: AssemblyFileVersion( "1.0.0.0" )]
+[assembly: AssemblyVersion("0.5.0.3")]
+[assembly: AssemblyFileVersion("0.5.0.3")]
