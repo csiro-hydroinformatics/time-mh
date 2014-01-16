@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle( "CSIRO.Data.netCDF" )]
-[assembly: AssemblyDescription( "" )]
+[assembly: AssemblyDescription( "Utilities to access specific netCDF data schemes commonly used to store spatial-temporal data" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "CSIRO" )]
 [assembly: AssemblyProduct( "CSIRO.Data.netCDF" )]
