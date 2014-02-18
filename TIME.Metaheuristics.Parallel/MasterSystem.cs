@@ -14,7 +14,7 @@ using CSIRO.Metaheuristics.RandomNumberGenerators;
 using CSIRO.Metaheuristics.Utils;
 using TIME.Metaheuristics.Parallel.ExtensionMethods;
 using TIME.Metaheuristics.Parallel.Objectives;
-using MPI;
+//using MPI;
 using TIME.DataTypes;
 using TIME.Tools.Metaheuristics.Optimization;
 using TIME.Tools.Metaheuristics.Persistence;
@@ -66,8 +66,9 @@ namespace TIME.Metaheuristics.Parallel
         private bool disposed;
         private SceParameterDefinition sceParameterDefinition;
 
-        public MasterSystem(ProgramArguments arguments)
+        public MasterSystem(ProgramArguments arguments, int size)
         {
+            int rank = 0;
         //DebugHelpers.MpiSleep(10000);
             LoadOptimiserParams(arguments);
             sceOptions = SceOptions.RndInSubComplex;
@@ -93,7 +94,7 @@ namespace TIME.Metaheuristics.Parallel
             TemplateParameterSet = GridModelHelper.LoadParameterSpace(arguments.ParameterDefinitions.FullName);
         //DebugHelpers.MpiSleep(14000);
             evaluator = new MultiCatchmentCompositeObjectiveEvaluator(
-                arguments.GlobalDefinition, arguments.ObjectiveDefinition, arguments.CreateCompositeEvaluator());
+                arguments.GlobalDefinition, arguments.ObjectiveDefinition, arguments.CreateCompositeEvaluator(), rank, size);
         //DebugHelpers.MpiSleep(15000);
             InMemoryLogger = new InMemoryLogger();
             optimisationEngine = CreateEngine(evaluator, TemplateParameterSet, InMemoryLogger, arguments.Name, arguments.InitString);
@@ -236,7 +237,8 @@ namespace TIME.Metaheuristics.Parallel
             // this is required because the Slaves sit in an infinite loop waiting for a new parameter set.
             Log.Info("Root: Shutting down MPI processes");
             MpiWorkPacket workPacket = new MpiWorkPacket(SlaveActions.Terminate);
-            Communicator.world.Broadcast(ref workPacket, 0);
+            evaluator.WorldBroadcast(ref workPacket, 0);
+            //Communicator.world.Broadcast(ref workPacket, 0);
         }
 
         /// <summary>

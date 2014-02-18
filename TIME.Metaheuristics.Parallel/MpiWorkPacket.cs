@@ -8,7 +8,7 @@ using TIME.Tools.Metaheuristics.SystemConfigurations;
 namespace TIME.Metaheuristics.Parallel
 {
     [Serializable]
-    class MpiWorkPacket
+    internal class MpiWorkPacket
     {
         public int Command;
         public MpiSysConfig Parameters;

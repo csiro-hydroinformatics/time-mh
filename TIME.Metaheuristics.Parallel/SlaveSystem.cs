@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using TIME.Metaheuristics.Parallel.Objectives;
 
 namespace TIME.Metaheuristics.Parallel
 {
@@ -24,14 +25,14 @@ namespace TIME.Metaheuristics.Parallel
         /// </summary>
         /// <param name="globalDefinitionFileInfo">The global definition file info.</param>
         /// <param name="objectivesDefinitionFileInfo">The objectives definition file info.</param>
-        public SlaveSystem(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo)
+        public SlaveSystem(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, int rank, int size)
         {
             this.globalDefinitionFileInfo = globalDefinitionFileInfo;
             objectivesDefinition = objectivesDefinitionFileInfo;
-            MpiSlave = new MpiGriddedCatchmentObjectiveEvaluator(globalDefinitionFileInfo, objectivesDefinition);
+            MpiSlave = MultiCatchmentCompositeObjectiveEvaluator.Factory.Create(globalDefinitionFileInfo, objectivesDefinition, rank, size);
         }
 
-        public MpiGriddedCatchmentObjectiveEvaluator MpiSlave;
+        public BaseGriddedCatchmentObjectiveEvaluator MpiSlave;
 
         /// <summary>
         ///   Runs the slave.

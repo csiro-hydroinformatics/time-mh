@@ -128,6 +128,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SerialGriddedCatchmentObjectiveEvaluator.cs" />
+    <Compile Include="MpiGriddedCatchmentObjectiveEvaluator.cs" />
     <Compile Include="GridModelHelper.cs" />
     <Compile Include="Exceptions\ConfigurationException.cs" />
     <Compile Include="Execution\GriddedModelRunner.cs" />
@@ -137,11 +139,14 @@
     <Compile Include="Execution\GridCellModel.cs" />
     <Compile Include="GriddedCatchmentToyModel.cs" />
     <Compile Include="Execution\ICatchmentCellModelRunner.cs" />
+    <Compile Include="GroupProxy.cs" />
+    <Compile Include="IntracommunicatorProxy.cs" />
     <Compile Include="MasterSystem.cs" />
-    <Compile Include="MpiGriddedCatchmentObjectiveEvaluator.cs" />
+    <Compile Include="BaseGriddedCatchmentObjectiveEvaluator.cs" />
     <Compile Include="MpiTimeSeries.cs" />
     <Compile Include="MpiWorkPacket.cs" />
     <Compile Include="Objectives\CatchmentStatisticsEvaluator.cs" />
+    <Compile Include="Objectives\EnsembleCatchmentsEvaluatorFactory.cs" />
     <Compile Include="Objectives\MultiCatchmentCompositeObjectiveEvaluator.cs" />
     <Compile Include="Objectives\ObjectiveScoresHelper.cs" />
     <Compile Include="PointTimeSeriesSimulationDictionaryAdapter.cs" />
@@ -166,6 +171,9 @@
   <ItemGroup>
     <None Include="Diagrams\ClassDiagram.cd" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

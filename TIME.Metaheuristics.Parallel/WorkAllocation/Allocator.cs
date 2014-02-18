@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using MPI;
+//using MPI;
 using TIME.Metaheuristics.Parallel.Exceptions;
 using TIME.Tools.Metaheuristics.Persistence.Gridded;
 
@@ -19,15 +19,15 @@ namespace TIME.Metaheuristics.Parallel.WorkAllocation
 
         private Dictionary<string, HashSet<int>> ranksByCatchment;
         private WorkPackage workPackage;
-        private readonly Intracommunicator communicator;
+        private readonly IIntracommunicatorProxy communicator;
         private int griddedResultCount;
         private Dictionary<string, CatchmentDefinition> catchmentsById;
 
-        protected Allocator(GlobalDefinition globalDefinition)
+        protected Allocator(GlobalDefinition globalDefinition, IIntracommunicatorProxy communicator)
         {
             if (globalDefinition == null) throw new ArgumentNullException("globalDefinition");
 
-            communicator = Communicator.world;
+            this.communicator = communicator;
             GlobalDef = globalDefinition;
         }
 
@@ -91,7 +91,7 @@ namespace TIME.Metaheuristics.Parallel.WorkAllocation
                 Debug.Assert(workPackage != null);
                 Log.InfoFormat(
                     "Rank {0}: work allocation contains {1} cells across {2} catchments",
-                    communicator.Rank,
+                    communicator.GetRank(),
                     workPackage.Cells.Length,
                     workPackage.Catchments.Count);
             }

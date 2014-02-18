@@ -4,7 +4,7 @@
     <Position X="2.235" Y="5.538" Height="0.604" Width="6.966" />
   </Comment>
   <Comment CommentText="Constructor uses:">
-    <Position X="12.25" Y="8.25" Height="0.452" Width="1.185" />
+    <Position X="12.25" Y="8.75" Height="0.452" Width="1.185" />
   </Comment>
   <Class Name="TIME.Metaheuristics.Parallel.MasterSystem" Collapsed="true">
     <Position X="0.5" Y="3.25" Width="1.5" />
@@ -20,54 +20,44 @@
   <Class Name="TIME.Metaheuristics.Parallel.SlaveSystem">
     <Position X="0.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAACAAAABAAAAAAAAQAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAACAAAAAAAAACAAAABAAAAAACAQAAAAAAAAA=</HashCode>
       <FileName>SlaveSystem.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="TIME.Metaheuristics.Parallel.Objectives.MultiCatchmentCompositeObjectiveEvaluator">
     <Position X="3.25" Y="3.25" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <HashCode>AAAIAAAAACAAAAAAIAAAAAAAAAAAAIAAAAAAAAAAAQA=</HashCode>
       <FileName>Objectives\MultiCatchmentCompositeObjectiveEvaluator.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="mpiGridEval" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="TIME.Metaheuristics.Parallel.MpiGriddedCatchmentObjectiveEvaluator">
-    <Position X="9.25" Y="2.5" Width="3" />
+    <Position X="9" Y="4.75" Width="3" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>EAIICAAAQCQICAQAAgADAAYQAAgAKACAIGgAgQgCAgQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAgAAIIAAAAAAAEAAAQ=</HashCode>
       <FileName>MpiGriddedCatchmentObjectiveEvaluator.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="GlobalDefinition" />
-      <Property Name="MyWork" />
-    </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="Models" />
-    </ShowAsCollectionAssociation>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="TIME.Metaheuristics.Parallel.MpiWorkPacket" Collapsed="true">
-    <Position X="13.75" Y="5.75" Width="1.5" />
+    <Position X="13.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>MpiWorkPacket.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TIME.Metaheuristics.Parallel.WorkAllocation.WorkPackage">
-    <Position X="13.75" Y="3.5" Width="1.5" />
+    <Position X="13.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>WorkAllocation\WorkPackage.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TIME.Metaheuristics.Parallel.WorkAllocation.BalancedCellCountAllocator" Collapsed="true">
-    <Position X="13.5" Y="8.25" Width="2.25" />
+    <Position X="13.5" Y="8.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>WorkAllocation\BalancedCellCountAllocator.cs</FileName>
@@ -107,16 +97,42 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="TIME.Metaheuristics.Parallel.ICatchmentCellModelRunner">
-    <Position X="13.5" Y="0.5" Width="2.25" />
+  <Class Name="TIME.Metaheuristics.Parallel.BaseGriddedCatchmentObjectiveEvaluator">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAAABAAIAAAAAAAAAAAACAAAAAAAA=</HashCode>
-      <FileName>ICatchmentCellModelRunner.cs</FileName>
+      <HashCode>EAIICAAAQSQoiAQAAoADAAYQAAgAKIKAIGgBgQkCAgQ=</HashCode>
+      <FileName>BaseGriddedCatchmentObjectiveEvaluator.cs</FileName>
     </TypeIdentifier>
-  </Interface>
+    <ShowAsAssociation>
+      <Property Name="MyWork" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Models" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TIME.Metaheuristics.Parallel.SerialGriddedCatchmentObjectiveEvaluator" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAABACIIAAAAAAAEAAAQ=</HashCode>
+      <FileName>SerialGriddedCatchmentObjectiveEvaluator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="CSIRO.Metaheuristics.IEnsembleObjectiveEvaluator&lt;T&gt;">
     <Position X="9.25" Y="0.5" Width="2.5" />
     <TypeIdentifier />
+  </Interface>
+  <Interface Name="TIME.Metaheuristics.Parallel.Execution.ICatchmentCellModelRunner">
+    <Position X="13.75" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAABAAIAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Execution\ICatchmentCellModelRunner.cs</FileName>
+    </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

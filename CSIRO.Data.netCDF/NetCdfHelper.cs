@@ -19,7 +19,7 @@ namespace CSIRO.Data.netCDF
     /// This is meant to be as 'thin' as possible a layer between the netCDF API and 
     /// some idioms and patterns customary to the CLR.
     /// </remarks>
-    public class NetCdfHelper
+    public static class NetCdfHelper
     {
         // Some of the following strings are conforming to CF1 conventions: do not change lightly!
         internal const string latVarName = "lat";

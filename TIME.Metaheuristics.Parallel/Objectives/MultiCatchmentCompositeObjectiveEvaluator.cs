@@ -13,7 +13,7 @@ namespace TIME.Metaheuristics.Parallel.Objectives
     /// </summary>
     public class MultiCatchmentCompositeObjectiveEvaluator : MpiObjectiveEvaluator
     {
-
+        public static EnsembleCatchmentsEvaluatorFactory Factory = new EnsembleCatchmentsEvaluatorFactory();
         /// <summary>
         ///   Initializes a new instance of the <see cref="MultiCatchmentCompositeObjectiveEvaluator" /> class.
         /// </summary>
@@ -21,13 +21,13 @@ namespace TIME.Metaheuristics.Parallel.Objectives
         /// <param name="objectivesDefinitionFileInfo"> The objectives definition file info. </param>
         // <param name="globalCompoundObjectiveDefinitionFileInfo"> The global objective definition file info. This defines the function for compositing scores into the single global score. </param>
         public MultiCatchmentCompositeObjectiveEvaluator(
-            FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, CompositeObjectiveCalculation<MpiSysConfig> compositeCalculation) : 
-            base(new MpiGriddedCatchmentObjectiveEvaluator(globalDefinitionFileInfo, objectivesDefinitionFileInfo), compositeCalculation)
+            FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, CompositeObjectiveCalculation<MpiSysConfig> compositeCalculation, int rank, int size) : 
+            base(Factory.Create(globalDefinitionFileInfo, objectivesDefinitionFileInfo, rank, size), compositeCalculation)
         {
-            mpiGridEval = (MpiGriddedCatchmentObjectiveEvaluator) systemsEvaluator;
+            mpiGridEval = (BaseGriddedCatchmentObjectiveEvaluator)systemsEvaluator;
         }
 
-        private MpiGriddedCatchmentObjectiveEvaluator mpiGridEval;
+        private BaseGriddedCatchmentObjectiveEvaluator mpiGridEval;
 
         public int TotalCellCount
         {
@@ -46,5 +46,10 @@ namespace TIME.Metaheuristics.Parallel.Objectives
         }
 
         #endregion
+
+        internal void WorldBroadcast(ref MpiWorkPacket workPacket, int p)
+        {
+            this.mpiGridEval.WorldBroadcast(ref workPacket, 0);
+        }
     }
 }
