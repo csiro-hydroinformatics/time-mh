@@ -18,7 +18,7 @@ namespace TIME.Metaheuristics.Parallel.Tests
         public void Setup()
         {
             gd = new GlobalDefinition();
-            allocator = new TestBalancedCellCountAllocator(gd);
+            allocator = new TestBalancedCellCountAllocator(gd, new MpiWorldIntracommunicatorProxy());
         }
 
         [TestFixtureSetUp]

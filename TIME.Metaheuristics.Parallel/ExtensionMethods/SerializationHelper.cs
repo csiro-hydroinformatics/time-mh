@@ -16,9 +16,11 @@ namespace TIME.Metaheuristics.Parallel.ExtensionMethods
         public static string XmlSerialize(this object data, Type[] types = null)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(data.GetType(), types);
-            TextWriter writer = new StringWriter();
-            xmlSerializer.Serialize(writer, data);
-            return writer.ToString();
+            using (TextWriter writer = new StringWriter())
+            {
+                xmlSerializer.Serialize(writer, data);
+                return writer.ToString();
+            }
         }
 
         /// <summary>
@@ -30,9 +32,10 @@ namespace TIME.Metaheuristics.Parallel.ExtensionMethods
         public static void XmlSerialize(this object data, String filename, Type[] types = null)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(data.GetType(), types);
-            TextWriter writer = new StreamWriter(filename);
-            xmlSerializer.Serialize(writer, data);
-            writer.Close();
+            using (TextWriter writer = new StreamWriter(filename))
+            {
+                xmlSerializer.Serialize(writer, data);
+            }
         }
 
         /// <summary>
@@ -45,8 +48,10 @@ namespace TIME.Metaheuristics.Parallel.ExtensionMethods
         public static T XmlDeserialize<T>(string xmlData, Type[] types = null)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T), types);
-            TextReader reader = new StringReader(xmlData);
-            return (T) xmlSerializer.Deserialize(reader);
+            using (TextReader reader = new StringReader(xmlData))
+            {
+                return (T)xmlSerializer.Deserialize(reader);
+            }
         }
 
         /// <summary>
@@ -61,8 +66,10 @@ namespace TIME.Metaheuristics.Parallel.ExtensionMethods
         public static T XmlDeserialize<T>(FileInfo fileInfo, Type[] types = null)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T), types);
-            TextReader reader = new StreamReader(fileInfo.FullName);
-            return (T)xmlSerializer.Deserialize(reader);
+            using (TextReader reader = new StreamReader(fileInfo.FullName))
+            {
+                return (T)xmlSerializer.Deserialize(reader);
+            }
         }
     }
 }

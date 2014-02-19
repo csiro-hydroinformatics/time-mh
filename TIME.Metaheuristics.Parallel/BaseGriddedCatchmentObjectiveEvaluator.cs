@@ -52,7 +52,10 @@ namespace TIME.Metaheuristics.Parallel
         /// </summary>
         /// <param name="globalDefinitionFileInfo">The global definition file info.</param>
         /// <param name="objectivesDefinitionFileInfo">The objectives definition file info.</param>
-        protected BaseGriddedCatchmentObjectiveEvaluator(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, int rank, int size)
+        /// <param name="rank">The rank of the process in the 'world'</param>
+        /// <param name="size"></param>
+        /// <param name="worldCommunicator"></param>
+        protected BaseGriddedCatchmentObjectiveEvaluator(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, int rank, int size, IIntracommunicatorProxy worldCommunicator)
         {
             this.rank = rank;
             this.size = size;
@@ -68,7 +71,7 @@ namespace TIME.Metaheuristics.Parallel
             Log.DebugFormat("Rank {0}: Loading global definition", WorldRank);
             GlobalDefinition = SerializationHelper.XmlDeserialize<GlobalDefinition>(globalDefinitionFileInfo);
             Log.DebugFormat("Rank {0}: global definition complete", WorldRank);
-            AllocateWork(new BalancedCellCountAllocator(GlobalDefinition));
+            AllocateWork(new BalancedCellCountAllocator(GlobalDefinition, worldCommunicator));
         }
 
         /// <summary>
@@ -544,21 +547,6 @@ namespace TIME.Metaheuristics.Parallel
             foreach (var model in Models)
             {
                 SerializableDictionary<string, MpiTimeSeries> result = model.Execute(parameters);
-                //foreach (var kvp in result)
-                //{
-                //    long count = 0;
-                //    foreach (var val in kvp.Value.TimeSeries)
-                //    {
-                //        if (val.Equals(double.NaN))
-                //        {
-                //            var today = kvp.Value.Start.AddTicks(kvp.Value.TimeStep.GetTimeSpan().Ticks * count);
-                //            Log.InfoFormat("SimulationResult {0} bacame NaN on {1} for catchment {2} at cell {3}", kvp.Key, today.ToShortDateString(), model.CatchmentId, model.CellId);
-                //            break;
-                //        }
-                //        count++;
-                //    }
-                //}
-
                 SerializableDictionary<string, MpiTimeSeries> existingResults;
                 if (partialCatchmentResults.TryGetValue(model.CatchmentId, out existingResults))
                 {
@@ -623,22 +611,6 @@ namespace TIME.Metaheuristics.Parallel
                                 finalResult[partialResultPairs.Key].InplaceAdd(partialResultPairs.Value);
                     }
 
-                    // foreach loops are very slow. Anyway, the models should throw early exceptions if NaN conditions occur.
-                    //foreach (var kvp in finalResult)
-                    //{
-                    //    long count = 0;
-                    //    foreach (var val in kvp.Value.TimeSeries)
-                    //    {
-                    //        if (val.Equals(double.NaN))
-                    //        {
-                    //            var today = kvp.Value.Start.AddTicks(kvp.Value.TimeStep.GetTimeSpan().Ticks * count);
-                    //            Log.InfoFormat("CatchmentResult {0} bacame NaN on {1} for catchment {2}", kvp.Key, today.ToShortDateString(), catchment.Id);
-                    //            break;
-                    //        }
-                    //        count++;
-                    //    }
-                    //}
-
                     MpiObjectiveScores finalCatchmentResult = CalculateCatchmentScores(catchment, finalResult, sysConfig);
                     finalCatchmentResults[finalResultIndex] = finalCatchmentResult;
                     finalResultIndex++;
@@ -670,21 +642,6 @@ namespace TIME.Metaheuristics.Parallel
             // make the pre-calculated time series look like a point time series model so it can be used by the statistics evaluator
             PointTimeSeriesSimulationDictionaryAdapter catchmentTimeSeriesAdapter = new PointTimeSeriesSimulationDictionaryAdapter(convertedCatchmentTimeSeries);
 
-            foreach (var variable in catchmentTimeSeriesAdapter.GetRecordedVariableNames())
-            {
-                long count = 0;
-                var ts = catchmentTimeSeriesAdapter.GetRecorded(variable);
-                foreach (var val in ts)
-                {
-                    if (val.Equals(double.NaN))
-                    {
-                        var today = ts.Start.AddTicks(ts.timeStep.GetTimeSpan().Ticks * count);
-                        Log.InfoFormat("CatchmentResultAdapter {0} became NaN on {1} for catchment {2}", variable, today.ToShortDateString(), catchment.Id);
-                        break;
-                    }
-                    count++;
-                }
-            }
             catchmentTimeSeriesAdapter.SetPeriod(catchment.Cells[0].ModelRunDefinition.StartDate, catchment.Cells[0].ModelRunDefinition.EndDate);
 
             //Log.InfoFormat("CalcCat Elapsed 3: {0}", (DateTime.Now - start).TotalMilliseconds); start = DateTime.Now;
@@ -697,14 +654,14 @@ namespace TIME.Metaheuristics.Parallel
             catchmentScoreEvaluator.SetModelRunner(catchmentTimeSeriesAdapter);
             Log.DebugFormat("Rank {0}: Catchment '{1}' evaluating score", WorldRank, catchment.Id);
             MpiObjectiveScores calculateCatchmentScores = new MpiObjectiveScores(catchmentScoreEvaluator.EvaluateScore(catchmentTimeSeriesAdapter, sysConfig), catchment.Id);
-            foreach (var s in calculateCatchmentScores.scores)
-            {
-                if (s.value.Equals(double.NaN))
-                {
-                    Log.InfoFormat("Score {0},{1} bacame NaN for catchment {2}", s.name, s.text, catchment.Id);
-                    Log.InfoFormat("Configuration: {0}", calculateCatchmentScores.SystemConfiguration);
-                }
-            }
+            //foreach (var s in calculateCatchmentScores.scores)
+            //{
+            //    if (s.value.Equals(double.NaN))
+            //    {
+            //        Log.InfoFormat("Score {0},{1} bacame NaN for catchment {2}", s.name, s.text, catchment.Id);
+            //        Log.InfoFormat("Configuration: {0}", calculateCatchmentScores.SystemConfiguration);
+            //    }
+            //}
 
             //Log.InfoFormat("CalcCat Elapsed 5: {0}", (DateTime.Now - start).TotalMilliseconds); start = DateTime.Now;
             return calculateCatchmentScores;

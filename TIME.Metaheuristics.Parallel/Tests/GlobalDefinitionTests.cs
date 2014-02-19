@@ -177,15 +177,23 @@ namespace TIME.Metaheuristics.Parallel.Tests
         {
             GlobalDefinition gd = new GlobalDefinition();
             gd.RandomCatchments(3, 1, 5);
-            const string filename = @"E:\Code\AWRA-Calibration\output\gd.xml";
-            gd.XmlSerialize(filename);
-            GlobalDefinition result = SerializationHelper.XmlDeserialize<GlobalDefinition>(new FileInfo(filename));
-            AssertThatDefinitionsAreEquivalent(result, gd);
+            var filename = Path.GetTempFileName();
+            try
+            {
+                gd.XmlSerialize(filename);
+                GlobalDefinition result = SerializationHelper.XmlDeserialize<GlobalDefinition>(new FileInfo(filename));
+                AssertThatDefinitionsAreEquivalent(result, gd);
 
-            // test the serialisation of the catchment id
-            foreach (CatchmentDefinition cd in result)
-                foreach (CellDefinition cell in cd.Cells)
-                    Assert.That(cell.CatchmentId, Is.EqualTo(cd.Id));
+                // test the serialisation of the catchment id
+                foreach (CatchmentDefinition cd in result)
+                    foreach (CellDefinition cell in cd.Cells)
+                        Assert.That(cell.CatchmentId, Is.EqualTo(cd.Id));
+            }
+            finally
+            {
+                if (File.Exists(filename))
+                    File.Delete(filename);
+            }
         }
 
         [Test]

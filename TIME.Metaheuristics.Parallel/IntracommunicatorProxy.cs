@@ -13,6 +13,46 @@ namespace TIME.Metaheuristics.Parallel
         int Size { get; }
 
         Tools.Collections.SerializableDictionary<string, MpiTimeSeries>[] Gather(Tools.Collections.SerializableDictionary<string, MpiTimeSeries> serializableDictionary, int root, int sender);
+
+        void Scatter<T>(T[] workPackages);
+
+        T Scatter<T>(int rank);
+
+        void Broadcast<T>(ref T message, int rank);
+    }
+
+    internal class SerialWorldIntracommunicatorProxy : IIntracommunicatorProxy
+    {
+        public int GetRank(int worldRank)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Size
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public Tools.Collections.SerializableDictionary<string, MpiTimeSeries>[] Gather(Tools.Collections.SerializableDictionary<string, MpiTimeSeries> serializableDictionary, int root, int sender)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void Scatter<T>(T[] workPackages)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T Scatter<T>(int rank)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Broadcast<T>(ref T message, int rank)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     internal class SerialIntracommunicatorProxy : IIntracommunicatorProxy
@@ -50,38 +90,83 @@ namespace TIME.Metaheuristics.Parallel
                 return groupRank[worldRank];
             return -32766; // to be consistent with what seems to be in logs of the MPI runs
         }
+
+
+        public void Scatter<T>(T[] workPackages)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T Scatter<T>(int rank)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Broadcast<T>(ref T message, int rank)
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    internal class MpiIntracommunicatorProxy : IIntracommunicatorProxy
+    internal abstract class BaseMpiIntracommunicatorProxy
     {
-        private Group catchmentGroup;
-        Intracommunicator catchmentCommunicator;
-
-        public MpiIntracommunicatorProxy(IGroupProxy catchmentGroup)
+        protected Intracommunicator communicator;
+        protected BaseMpiIntracommunicatorProxy(Intracommunicator communicator)
         {
-            this.catchmentGroup = ((MpiGroupProxy)catchmentGroup).group;
-            catchmentCommunicator = (Intracommunicator)Communicator.world.Create(this.catchmentGroup);
+            this.communicator = communicator;
+        }
+        protected BaseMpiIntracommunicatorProxy()
+        {
+        }
+        public int GetRank(int worldRank)
+        {
+            return communicator.Rank;
         }
 
         public int Size
         {
-            get { return catchmentCommunicator.Size; }
+            get { return communicator.Size; }
         }
 
         public Tools.Collections.SerializableDictionary<string, MpiTimeSeries>[] Gather(Tools.Collections.SerializableDictionary<string, MpiTimeSeries> serializableDictionary, int root, int sender)
         {
-            return catchmentCommunicator.Gather(serializableDictionary, root);
+            return communicator.Gather(serializableDictionary, root);
         }
 
-        public int GetRank(int worldRank)
+        public void Scatter<T>(T[] workPackages)
         {
-            return catchmentCommunicator.Rank;
+            communicator.Scatter(workPackages);
+        }
+
+        public T Scatter<T>(int rank)
+        {
+            return communicator.Scatter<T>(rank);
+        }
+
+        public void Broadcast<T>(ref T message, int rank)
+        {
+            communicator.Broadcast(ref message, rank);
         }
 
         /// <summary>
         /// Is the MPI Intracommunicator pointed to by this proxy a null reference?
         /// </summary>
-        public bool IsNull { get { return catchmentCommunicator == null; } }
+        public bool IsNull { get { return communicator == null; } }
+
     }
 
+    internal class MpiWorldIntracommunicatorProxy : BaseMpiIntracommunicatorProxy, IIntracommunicatorProxy
+    {
+        public MpiWorldIntracommunicatorProxy() : base(Communicator.world) {}
+    }
+
+    internal class MpiIntracommunicatorProxy : BaseMpiIntracommunicatorProxy, IIntracommunicatorProxy
+    {
+        private Group catchmentGroup;
+        public MpiIntracommunicatorProxy(IGroupProxy catchmentGroup)
+        {
+            this.catchmentGroup = ((MpiGroupProxy)catchmentGroup).group;
+            communicator = (Intracommunicator)Communicator.world.Create(this.catchmentGroup);
+        }
+    }
 }

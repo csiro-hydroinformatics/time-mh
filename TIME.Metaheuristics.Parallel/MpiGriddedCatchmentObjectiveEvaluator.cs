@@ -29,7 +29,7 @@ namespace TIME.Metaheuristics.Parallel
     internal sealed class MpiGriddedCatchmentObjectiveEvaluator : BaseGriddedCatchmentObjectiveEvaluator
     {
         public MpiGriddedCatchmentObjectiveEvaluator(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, int rank)
-            : base(globalDefinitionFileInfo, objectivesDefinitionFileInfo, rank, Communicator.world.Size)
+            : base(globalDefinitionFileInfo, objectivesDefinitionFileInfo, rank, Communicator.world.Size, new MpiWorldIntracommunicatorProxy())
         {
             if(rank != GetWorldRank()) throw new ArgumentException(String.Format("Detected inconsistent MPI rank specifications; passed {0} via constructor, but get {1} World.Rank", rank, GetWorldRank()));
         }

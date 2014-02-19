@@ -9,6 +9,9 @@ using TIME.Tools.ModelExecution;
 
 namespace TIME.Metaheuristics.Parallel
 {
+    /// <summary>
+    /// A facade to a set of cached time series, results of a simulation.
+    /// </summary>
     internal sealed class PointTimeSeriesSimulationDictionaryAdapter : ICloneableSimulation
     {
         private IDictionary<string, TimeSeries> TimeSeriesDictionary { get; set; }

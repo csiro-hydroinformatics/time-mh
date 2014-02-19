@@ -19,6 +19,10 @@ namespace TIME.Metaheuristics.Parallel.WorkAllocation
 
         private Dictionary<string, HashSet<int>> ranksByCatchment;
         private WorkPackage workPackage;
+
+        /// <summary>
+        /// The communicator used to allocate the work packages; typically the 'world' communicator for Master-slave MPI patterns
+        /// </summary>
         private readonly IIntracommunicatorProxy communicator;
         private int griddedResultCount;
         private Dictionary<string, CatchmentDefinition> catchmentsById;
@@ -91,7 +95,7 @@ namespace TIME.Metaheuristics.Parallel.WorkAllocation
                 Debug.Assert(workPackage != null);
                 Log.InfoFormat(
                     "Rank {0}: work allocation contains {1} cells across {2} catchments",
-                    communicator.GetRank(),
+                    communicator.GetRank(-1),
                     workPackage.Cells.Length,
                     workPackage.Catchments.Count);
             }
@@ -130,7 +134,7 @@ namespace TIME.Metaheuristics.Parallel.WorkAllocation
         /// </summary>
         public void Allocate()
         {
-            int rank = communicator.Rank;
+            int rank = communicator.GetRank(-1);
             InitStorage(communicator.Size);
 
             if (rank == 0)

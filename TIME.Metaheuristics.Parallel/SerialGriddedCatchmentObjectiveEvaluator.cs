@@ -35,9 +35,9 @@ namespace TIME.Metaheuristics.Parallel
             instances = new List<SerialGriddedCatchmentObjectiveEvaluator>();
         }
         public SerialGriddedCatchmentObjectiveEvaluator(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, int rank, int size)
-            : base(globalDefinitionFileInfo, objectivesDefinitionFileInfo, rank, size)
+            : base(globalDefinitionFileInfo, objectivesDefinitionFileInfo, rank, size, new SerialWorldIntracommunicatorProxy())
         {
-            if (instances.Count != rank) throw new ArgumentException("Must create SerialGriddedCatchmentObjectiveEvaluator in rank order");
+            if (instances.Count != rank) throw new ArgumentException("Must create SerialGriddedCatchmentObjectiveEvaluator in a sequence by rank order");
             instances.Add(this);
         }
 

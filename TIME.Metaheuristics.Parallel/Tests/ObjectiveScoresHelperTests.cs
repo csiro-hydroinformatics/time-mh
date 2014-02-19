@@ -83,7 +83,7 @@ namespace TIME.Metaheuristics.Parallel.Tests
         public void ArgumentNullExceptions()
         {
             ArgumentNullException e = Assert.Throws<ArgumentNullException>(() => ObjectiveScoresHelper.Mean(null, config));
-            Assert.AreEqual(e.ParamName, "scores");
+            Assert.AreEqual(e.ParamName, "scoresArray");
 
             e = Assert.Throws<ArgumentNullException>(() => ObjectiveScoresHelper.Mean(new MpiObjectiveScores[3], null));
             Assert.AreEqual(e.ParamName, "sysConfig");
