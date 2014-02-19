@@ -135,11 +135,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTimeSeriesByIdentifierWriteable.cs" />
+    <Compile Include="DisposableNetcdfDataset.cs" />
     <Compile Include="DisposableNetcdfFile.cs" />
     <Compile Include="NetCdfHelper.cs" />
-    <Compile Include="PointTimeSeriesNcDataset.cs" />
     <Compile Include="PointTimeSeriesNcFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeSeriesByIdentifierWriteable.cs" />
+    <Compile Include="TimeSeriesByIdentifierWriteableMultiVar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

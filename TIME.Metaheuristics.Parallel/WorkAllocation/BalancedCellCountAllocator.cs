@@ -21,8 +21,8 @@ namespace TIME.Metaheuristics.Parallel.WorkAllocation
         /// </summary>
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public BalancedCellCountAllocator(GlobalDefinition globalDefinition)
-            : base(globalDefinition)
+        public BalancedCellCountAllocator(GlobalDefinition globalDefinition, IIntracommunicatorProxy communicator)
+            : base(globalDefinition, communicator)
         {
         }
 

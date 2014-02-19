@@ -48,7 +48,7 @@ namespace TIME.Metaheuristics.Parallel
 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MpiGriddedCatchmentObjectiveEvaluator"/> class.
+        /// Initializes a new instance of the <see cref="BaseGriddedCatchmentObjectiveEvaluator"/> class.
         /// </summary>
         /// <param name="globalDefinitionFileInfo">The global definition file info.</param>
         /// <param name="objectivesDefinitionFileInfo">The objectives definition file info.</param>

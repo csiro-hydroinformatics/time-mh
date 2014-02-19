@@ -24,55 +24,50 @@ namespace CSIRO.Data.netCDF
         // Some of the following strings are conforming to CF1 conventions: do not change lightly!
         internal const string latVarName = "lat";
         internal const string lonVarName = "lon";
-        internal const string timeVarName = "time";
-        internal const string unitsAttName = "units";
-        internal const string axisAttName = "axis";
+        public const string TimeVarName = "time";
+        public const string UnitsAttName = "units";
+        public const string AxisAttName = "axis";
         internal const string standardNameAttName = "standard_name";
-        internal const string longNameAttName = "long_name";
+        public const string LongNameAttName = "long_name";
         // The following does not work anymore as DEFAULT_NULL_VALUE is not a constant anymore...
         //const float fillValue = (float)TIME.Core.Data.DEFAULT_NULL_VALUE;
         internal const float fillValue = -9999.0f;
-        internal const string missingValueAttName = "missing_value";
-        internal const string fillValueAttName = "_FillValue";
+        public const string MissingValueAttName = "missing_value";
+        public const string FillValueAttName = "_FillValue";
 
         // Strings need to be stored along a 'fictive' dimensions, somehow:
         internal const string seriesIdName = "identifierStrings";
         internal const int DEFAULT_STRING_LEN = 20;
 
-        public static TimeSeriesByIdentifierWriteable CreateTimeSeriesDatadrill(string filename, string variableName, string units, DateTime startDate, int timeLength, string itemIndexDimname = "indexIdentifier", string itemIndexVarname = "identifier", int maxLengthStrings = DEFAULT_STRING_LEN)
-        {
-            return new TimeSeriesByIdentifierWriteable(filename, variableName, units, startDate, timeLength, itemIndexDimname: itemIndexDimname, itemIndexVarname: itemIndexVarname, maxLengthStrings: maxLengthStrings);
-        }
-
         internal static void addMissingValueDefinition(string variableName, NetcdfFileWriteable writeableFile)
         {
-            writeableFile.addVariableAttribute(variableName, missingValueAttName, new java.lang.Float(fillValue));
-            writeableFile.addVariableAttribute(variableName, fillValueAttName, new java.lang.Float(fillValue));
+            writeableFile.addVariableAttribute(variableName, MissingValueAttName, new java.lang.Float(fillValue));
+            writeableFile.addVariableAttribute(variableName, FillValueAttName, new java.lang.Float(fillValue));
         }
 
         internal static void createLatitudeVariable(NetcdfFileWriteable writeableFile, Dimension latDim)
         {
             writeableFile.addVariable(latVarName, DataType.FLOAT, new Dimension[] { latDim });
-            writeableFile.addVariableAttribute(latVarName, unitsAttName, "degrees_north");
-            writeableFile.addVariableAttribute(latVarName, axisAttName, "Y");
+            writeableFile.addVariableAttribute(latVarName, UnitsAttName, "degrees_north");
+            writeableFile.addVariableAttribute(latVarName, AxisAttName, "Y");
             writeableFile.addVariableAttribute(latVarName, standardNameAttName, "latitude");
         }
 
         internal static void createLongitudeVariable(NetcdfFileWriteable writeableFile, Dimension lonDim)
         {
             writeableFile.addVariable(lonVarName, DataType.FLOAT, new Dimension[] { lonDim });
-            writeableFile.addVariableAttribute(lonVarName, unitsAttName, "degrees_east");
-            writeableFile.addVariableAttribute(lonVarName, axisAttName, "X");
+            writeableFile.addVariableAttribute(lonVarName, UnitsAttName, "degrees_east");
+            writeableFile.addVariableAttribute(lonVarName, AxisAttName, "X");
             writeableFile.addVariableAttribute(lonVarName, standardNameAttName, "longitude");
         }
 
         internal static void createTimeVariableDaily(NetcdfFileWriteable writeableFile, Dimension timeDim, DateTime startDate)
         {
-            writeableFile.addVariable(timeVarName, DataType.INT, new Dimension[] { timeDim });
-            writeableFile.addVariableAttribute(timeVarName, unitsAttName, "days since " + startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
-            writeableFile.addVariableAttribute(timeVarName, axisAttName, "T");
-            writeableFile.addVariableAttribute(timeVarName, standardNameAttName, timeVarName);
-            writeableFile.addVariableAttribute(timeVarName, longNameAttName, timeVarName);
+            writeableFile.addVariable(TimeVarName, DataType.INT, new Dimension[] { timeDim });
+            writeableFile.addVariableAttribute(TimeVarName, UnitsAttName, "days since " + startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+            writeableFile.addVariableAttribute(TimeVarName, AxisAttName, "T");
+            writeableFile.addVariableAttribute(TimeVarName, standardNameAttName, TimeVarName);
+            writeableFile.addVariableAttribute(TimeVarName, LongNameAttName, TimeVarName);
             writeableFile.setFill(true);
         }
 
@@ -158,14 +153,26 @@ namespace CSIRO.Data.netCDF
             int[] time1Darray = (int[])timeArray.copyTo1DJavaArray();
             DateTime[] dateArray = new DateTime[time1Darray.Length];
             String startUnit = timeVar.getUnitsString();
-            DateUnit du = new DateUnit(startUnit);
+            var s = startUnit.ToLower().Trim();
+            const string daysSince = "days since ";
+            if (!s.StartsWith(daysSince))
+                throw new NotSupportedException("Can only read time dimension of a daily period (variable dimension units must start with 'days since ')");
+            var startDate = DateTime.Parse(s.Replace(daysSince, ""), CultureInfo.InvariantCulture);
+            // Constructing a new DateUnit takes quite some time, in the order of seconds. 
+            // This creates some performance difficulties dealing with gridded catchment data. Restrict support for the time being.
+//            DateUnit du = new DateUnit(startUnit);
             for (int i = 0; i < dateArray.Length; i++)
             {
-                var date = du.makeDate(time1Darray[i]);
+                // START should be:
+                // var date = du.makeDate(time1Darray[i]);
                 // WARNING
                 // TODO: beware this! most data sets would be in local time. Goes back to the netcdf header content.
                 // need revisit... time zones are a huge issue lurking!
-                dateArray[i] = DateTime.Parse(date.toGMTString().Replace(" GMT", string.Empty), CultureInfo.InvariantCulture);
+                // dateArray[i] = DateTime.Parse(date.toGMTString().Replace(" GMT", string.Empty), CultureInfo.InvariantCulture);
+                // END should be
+
+                dateArray[i] = startDate.AddDays(i);
+
             }
             return dateArray;
         }
@@ -178,7 +185,7 @@ namespace CSIRO.Data.netCDF
             }
         }
 
-        public static DateTime[] GetTimeCoordinates(DisposableNetcdfDataset ncFile, string timeVarName = "time")
+        public static DateTime[] GetTimeCoordinates(NetcdfFile ncFile, string timeVarName = "time")
         {
             var timeVar = ncFile.findVariable(timeVarName);
             var theArray = (ArrayInt.D1)timeVar.read();
@@ -191,7 +198,7 @@ namespace CSIRO.Data.netCDF
         /// <param name="v">v - the variable or null for global attribute</param>
         public static double GetMissingValueAttributeDouble(NetcdfFile ncFile, Variable v, double defaultValue)
         {
-            return ncFile.readAttributeDouble(v, missingValueAttName, defaultValue);
+            return ncFile.readAttributeDouble(v, MissingValueAttName, defaultValue);
         }
 
         public static T[] GetOneDimArray<T>(ucar.ma2.Array theArray)

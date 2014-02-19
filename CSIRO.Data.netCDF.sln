@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSIRO.Data.netCDF", "CSIRO.Data.netCDF\CSIRO.Data.netCDF.csproj", "{E025D8D0-1E3F-44A9-9915-3DD98CAF97EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSIRO.Data.netCDF.Tests", "Tests\CSIRO.Data.netCDF.Tests\CSIRO.Data.netCDF.Tests.csproj", "{A1626C93-81F9-488F-BC1E-5A31C68C64FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,14 @@ Global
 		{E025D8D0-1E3F-44A9-9915-3DD98CAF97EE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E025D8D0-1E3F-44A9-9915-3DD98CAF97EE}.Release|x64.ActiveCfg = Release|Any CPU
 		{E025D8D0-1E3F-44A9-9915-3DD98CAF97EE}.Release|x86.ActiveCfg = Release|Any CPU
+		{A1626C93-81F9-488F-BC1E-5A31C68C64FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1626C93-81F9-488F-BC1E-5A31C68C64FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1626C93-81F9-488F-BC1E-5A31C68C64FE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A1626C93-81F9-488F-BC1E-5A31C68C64FE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A1626C93-81F9-488F-BC1E-5A31C68C64FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1626C93-81F9-488F-BC1E-5A31C68C64FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1626C93-81F9-488F-BC1E-5A31C68C64FE}.Release|x64.ActiveCfg = Release|Any CPU
+		{A1626C93-81F9-488F-BC1E-5A31C68C64FE}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

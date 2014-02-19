@@ -36,9 +36,9 @@ namespace TIME.Metaheuristics.Parallel.Tests
 
         private class TestBalancedCellCountAllocator : BalancedCellCountAllocator
         {
-            public TestBalancedCellCountAllocator(GlobalDefinition g)
+            public TestBalancedCellCountAllocator(GlobalDefinition g, IIntracommunicatorProxy communicator)
                 :
-                    base(g)
+                    base(g, communicator)
             {
             }
 
