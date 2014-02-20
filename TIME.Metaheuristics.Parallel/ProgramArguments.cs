@@ -34,6 +34,9 @@ namespace TIME.Metaheuristics.Parallel
         //[FileArgument('i', "inputParams", Description = "Input parameter definitions", FileMustExist = true, Optional = false)]
         public abstract FileInfo ParameterDefinitions{ get; set; }
 
+        //[FileArgument('x', "seedParams", Description = "Additional seeds for the population", FileMustExist = true, Optional = true)]
+        public abstract FileInfo SeedParameterSets { get; set; }
+
         //[FileArgument('p', "optimiserParams", Description = "Additional parameters for the optimiser", FileMustExist = true, Optional = false)]
         public abstract FileInfo OptimiserParams{ get; set; }
 

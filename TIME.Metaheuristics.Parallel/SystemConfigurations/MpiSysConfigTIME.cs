@@ -114,5 +114,13 @@ namespace TIME.Metaheuristics.Parallel.SystemConfigurations
         //    }
         //}
 
+        internal void CopyValuesFrom(ParameterSet pset)
+        {
+            var pParams = pset.freeParameters;
+            foreach (var item in pParams)
+            {
+                this.SetValue(item.member.Name, item.Value);
+            }
+        }
     }
 }

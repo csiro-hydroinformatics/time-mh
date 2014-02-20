@@ -20,6 +20,7 @@ using TIME.Tools.Metaheuristics.Optimization;
 using TIME.Tools.Metaheuristics.Persistence;
 using TIME.Tools.Metaheuristics.SystemConfigurations;
 using TIME.Tools.Persistence;
+using TIME.Metaheuristics.Parallel.SystemConfigurations;
 
 namespace TIME.Metaheuristics.Parallel
 {
@@ -92,12 +93,13 @@ namespace TIME.Metaheuristics.Parallel
             LogFileName = Path.Combine(arguments.OutputPath.FullName, arguments.LogFile);
             OutputFileName = Path.Combine(arguments.OutputPath.FullName, arguments.ResultsFile);
             TemplateParameterSet = GridModelHelper.LoadParameterSpace(arguments.ParameterDefinitions.FullName);
+            MpiSysConfig[] seedsPopulation = GridModelHelper.LoadParameterSets(arguments.SeedParameterSets, TemplateParameterSet);
         //DebugHelpers.MpiSleep(14000);
             evaluator = new MultiCatchmentCompositeObjectiveEvaluator(
                 arguments.GlobalDefinition, arguments.ObjectiveDefinition, arguments.CreateCompositeEvaluator(), rank, size);
         //DebugHelpers.MpiSleep(15000);
             InMemoryLogger = new InMemoryLogger();
-            optimisationEngine = CreateEngine(evaluator, TemplateParameterSet, InMemoryLogger, arguments.Name, arguments.InitString);
+            optimisationEngine = CreateEngine(evaluator, TemplateParameterSet, seedsPopulation, InMemoryLogger, arguments.Name, arguments.InitString);
         //DebugHelpers.MpiSleep(16000);
         }
 
@@ -117,7 +119,7 @@ namespace TIME.Metaheuristics.Parallel
 
         public string PythonSysPaths { get; set; }
 
-        private MpiSysConfig TemplateParameterSet { get; set; }
+        private MpiSysConfigTIME TemplateParameterSet { get; set; }
 
         public SceParameterDefinition SceParameterDefinition
         {
@@ -161,13 +163,14 @@ namespace TIME.Metaheuristics.Parallel
         private IEvolutionEngine<MpiSysConfig> CreateEngine(
             IClonableObjectiveEvaluator<MpiSysConfig> objectiveEvaluator,
             MpiSysConfig templateParameterSet,
+            MpiSysConfig[] seedsPopulation,
             ILoggerMh logger,
             string calibName,
             string initialisationOption)
         {
             Log.Debug("Root: creating optimisation engine");
             var dict = string.IsNullOrEmpty(calibName) ? CreateTimeStampCalibName() : CreateTag(calibName);
-            var populationInitializer = CreatePopulationInitialiser(templateParameterSet, objectiveEvaluator, initialisationOption);
+            var populationInitializer = CreatePopulationInitialiser( objectiveEvaluator, templateParameterSet, seedsPopulation,initialisationOption);
             return CreateEngine(objectiveEvaluator, dict, populationInitializer, logger);
         }
 
@@ -383,13 +386,16 @@ namespace TIME.Metaheuristics.Parallel
         #region Population Initialiser
 
         private ICandidateFactory<MpiSysConfig> CreatePopulationInitialiser(
-            MpiSysConfig templateParameterSet,
             IClonableObjectiveEvaluator<MpiSysConfig> objectiveEvaluator,
+            MpiSysConfig templateParameterSet,
+            MpiSysConfig[] seedsPopulation,
             string initialisationOption = "")
         {
             Log.Debug("Root: creating population initialiser");
             var options = initialisationOption.Split(':');
             var seeds = new List<MpiSysConfig> {templateParameterSet};
+            if (seedsPopulation!= null)
+                seeds.AddRange(seedsPopulation);
             var rng = new BasicRngFactory(SceParameterDefinition.RandomizationSeed);
 
             ICandidateFactory<MpiSysConfig> result = CreatePopulationInitialiser(

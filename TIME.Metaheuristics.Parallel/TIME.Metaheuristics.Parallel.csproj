@@ -163,6 +163,7 @@
     <Compile Include="Tests\MathTests.cs" />
     <Compile Include="Tests\ObjectiveScoresHelperTests.cs" />
     <Compile Include="Tests\TestGeometricOperations.cs" />
+    <Compile Include="Tests\TestParameterizers.cs" />
     <Compile Include="WorkAllocation\Allocator.cs" />
     <Compile Include="WorkAllocation\BalancedCellCountAllocator.cs" />
     <Compile Include="WorkAllocation\IWorkAllocator.cs" />
