@@ -12,6 +12,7 @@ using TIME.Tools.Optimisation;
 using TIME.Tools.Persistence;
 using TIME.Tools.Persistence.DataMapping;
 using System;
+using CSIRO.Metaheuristics.Utils;
 
 namespace TIME.Metaheuristics.Parallel
 {
@@ -46,20 +47,16 @@ namespace TIME.Metaheuristics.Parallel
             return InputOutputHelper.DeserializeFromXML<GlobalDefinition>(filename);
         }
 
-
-        internal static MpiSysConfig[] LoadParameterSets(FileInfo fileInfo, MpiSysConfigTIME TemplateParameterSet)
+        internal static MpiSysConfig[] LoadParameterSets(string filename, MpiSysConfigTIME templateParameterSet)
         {
-            if (fileInfo == null)
-                return new MpiSysConfig[0];
-            var filename = fileInfo.FullName;
             var ext = Path.GetExtension(filename).ToLower();
             if (ext == ".xml")
             {
-                var pSets = SerializationHelper.XmlDeserialize<ParameterSet[]>(filename, new[]{typeof(ParameterSet)});
+                var pSets = SerializationHelper.XmlDeserialize<ParameterSet[]>(filename, new[] { typeof(ParameterSet) });
                 var result = new MpiSysConfig[pSets.Length];
                 for (int i = 0; i < result.Length; i++)
                 {
-                    var p = new MpiSysConfigTIME(TemplateParameterSet);
+                    var p = new MpiSysConfigTIME(templateParameterSet);
                     p.CopyValuesFrom(pSets[i]);
                     result[i] = p;
                 }
@@ -67,9 +64,17 @@ namespace TIME.Metaheuristics.Parallel
             }
             else if (ext == ".csv")
             {
-                throw new NotImplementedException();
+                return MetaheuristicsHelper.ReadConfigsFromCsv(filename, templateParameterSet);
             }
             throw new NotImplementedException();
+        }
+
+        internal static MpiSysConfig[] LoadParameterSets(FileInfo fileInfo, MpiSysConfigTIME templateParameterSet)
+        {
+            if (fileInfo == null)
+                return new MpiSysConfig[0];
+            var filename = fileInfo.FullName;
+            return LoadParameterSets(filename, templateParameterSet);
         }
     }
 }

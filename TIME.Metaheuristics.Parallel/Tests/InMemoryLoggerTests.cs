@@ -56,21 +56,30 @@ namespace TIME.Metaheuristics.Parallel.Tests
 
         private IObjectiveScores[] CreateScores(int numScores, int objectivesPerScore)
         {
-            IObjectiveScores[] scores = new IObjectiveScores[numScores];
 
+            MpiSysConfig[] configs = new MpiSysConfig[numScores];
+            for (int i = 0; i < numScores; i++)
+                configs[i] = config;
+            return CreateTestScores(objectivesPerScore, configs);
+        }
+
+        public static IObjectiveScores[] CreateTestScores(int objectivesPerScore, MpiSysConfig[] configs)
+        {
+            int numScores = configs.Length;
+            IObjectiveScores[] scores = new IObjectiveScores[numScores];
             for (int i = 0; i < numScores; i++)
             {
                 IObjectiveScore[] objectives = new IObjectiveScore[objectivesPerScore];
                 for (int j = 0; j < objectivesPerScore; j++)
                     objectives[j] = new DoubleObjectiveScore(String.Format("Score:{0}-{1}", i, j), FakeScore(i + j), true);
 
-                scores[i] = new MpiObjectiveScores(objectives, config);
+                scores[i] = new MpiObjectiveScores(objectives, configs[i]);
             }
 
             return scores;
         }
 
-        private double FakeScore(double factor)
+        private static double FakeScore(double factor)
         {
             return System.Math.PI * factor;
         }
