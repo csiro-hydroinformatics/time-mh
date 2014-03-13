@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using ucar.nc2;
-using ucar.ma2;
-using ucar.nc2.dataset;
-using ucar.nc2.iosp.netcdf3;
-using ucar.unidata.io;
 
 
 namespace CSIRO.Data.netCDF
