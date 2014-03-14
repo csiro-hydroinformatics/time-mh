@@ -35,13 +35,13 @@
       <HintPath>..\packages\CSIRO.Data.netCDF.0.5.0.3\lib\net40\CSIRO.Data.netCDF.dll</HintPath>
     </Reference>
     <Reference Include="CSIRO.Metaheuristics">
-      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.0.5\lib\net40\CSIRO.Metaheuristics.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.0.6\lib\net40\CSIRO.Metaheuristics.dll</HintPath>
     </Reference>
     <Reference Include="CSIRO.Sys">
-      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.0.5\lib\net40\CSIRO.Sys.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.0.6\lib\net40\CSIRO.Sys.dll</HintPath>
     </Reference>
     <Reference Include="CSIRO.Utilities">
-      <HintPath>..\packages\CSIRO.Utilities.0.7.0.5\lib\net40\CSIRO.Utilities.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Utilities.0.7.0.6\lib\net40\CSIRO.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.AWT.WinForms">
       <HintPath>..\packages\IKVM.7.4.5161.0\lib\IKVM.AWT.WinForms.dll</HintPath>
