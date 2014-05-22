@@ -51,9 +51,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CSIRO.Metaheuristics.Parallel.0.7.0.6\lib\net40\CSIRO.Metaheuristics.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Sys, Version=0.7.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.Parallel.0.7.0.6\lib\net40\CSIRO.Sys.dll</HintPath>
+    <Reference Include="CSIRO.Metaheuristics.Tests">
+      <HintPath>..\packages\CSIRO.Metaheuristics.Tests.0.7.0.6\lib\net40\CSIRO.Metaheuristics.Tests.dll</HintPath>
+    </Reference>
+    <Reference Include="CSIRO.Sys">
+      <HintPath>..\packages\CSIRO.Metaheuristics.Tests.0.7.0.6\lib\net40\CSIRO.Sys.dll</HintPath>
     </Reference>
     <Reference Include="CSIRO.Utilities">
       <HintPath>..\packages\CSIRO.Utilities.0.7.0.6\lib\net40\CSIRO.Utilities.dll</HintPath>
