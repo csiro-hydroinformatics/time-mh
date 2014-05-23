@@ -173,8 +173,9 @@
       <Private>True</Private>
       <HintPath>..\packages\IronPython.2.7.4\lib\Net40\Microsoft.Scripting.Metadata.dll</HintPath>
     </Reference>
-    <Reference Include="MPI">
-      <HintPath>..\packages\MPI.1.1.2.0\lib\net40\MPI.dll</HintPath>
+    <Reference Include="MPI, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\awra\AWRA\Solutions\packages\MPI.NET.1.2.0.0\lib\net40\MPI.dll</HintPath>
     </Reference>
     <Reference Include="netcdfAll">
       <HintPath>..\packages\CSIRO.netCDF_IKVM.4.3.20\lib\net40\netcdfAll.dll</HintPath>
