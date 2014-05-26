@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;CELL_WEIGHTED_SUMS</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CELL_WEIGHTED_SUMS;DEBUG_MODELS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
