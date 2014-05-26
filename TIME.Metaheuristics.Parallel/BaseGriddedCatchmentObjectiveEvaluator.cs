@@ -197,38 +197,39 @@ namespace TIME.Metaheuristics.Parallel
         private WorkPackage MyWork
         {
             get { return myWork; }
-            set
-            {
-                myWork = value;
+        }
 
-                // Create the models
-                if (myWork != null && myWork.Cells.Length > 0)
+        private void SetWorkPackage(WorkPackage work)
+        {
+            myWork = work;
+
+            // Create the models
+            if (myWork != null && myWork.Cells.Length > 0)
+            {
+                Log.DebugFormat("Rank {0}: creating {1} model evaluators", WorldRank, myWork.Cells.Length);
+                Models = new ICatchmentCellModelRunner[MyWork.Cells.Length];
+                for (int i = 0; i < MyWork.Cells.Length; i++)
                 {
-                    Log.DebugFormat("Rank {0}: creating {1} model evaluators", WorldRank, myWork.Cells.Length);
-                    Models = new ICatchmentCellModelRunner[MyWork.Cells.Length];
-                    for (int i = 0; i < MyWork.Cells.Length; i++)
+                    CellDefinition cellDefinition = MyWork.Cells[i];
+                    Log.DebugFormat("Rank {0}: model instance {1}, catchment {2}, cell {3}", WorldRank, i, cellDefinition.CatchmentId, cellDefinition.Id);
+                    var inputs = (TIME.Tools.Metaheuristics.Persistence.Gridded.ModelInputsDefinition)cellDefinition.ModelRunDefinition.Inputs;
+                    if (inputs != null && !File.Exists(inputs.NetCdfDataFilename))
                     {
-                        CellDefinition cellDefinition = MyWork.Cells[i];
-                        Log.DebugFormat("Rank {0}: model instance {1}, catchment {2}, cell {3}", WorldRank, i, cellDefinition.CatchmentId, cellDefinition.Id);
-                        var inputs = (TIME.Tools.Metaheuristics.Persistence.Gridded.ModelInputsDefinition)cellDefinition.ModelRunDefinition.Inputs;
-                        if (inputs != null && !File.Exists(inputs.NetCdfDataFilename))
-                        {
-                            string msg = String.Format(
-                                "Rank {0}: Input netcdf file '{1}' not found. Catchment: {2}, cell {3}",
-				WorldRank,
-				inputs.NetCdfDataFilename,
-				cellDefinition.CatchmentId,
-				cellDefinition.Id);
-                            throw new ConfigurationException(msg);
-                        }
+                        string msg = String.Format(
+                            "Rank {0}: Input netcdf file '{1}' not found. Catchment: {2}, cell {3}",
+                            WorldRank,
+                            inputs.NetCdfDataFilename,
+                            cellDefinition.CatchmentId,
+                            cellDefinition.Id);
+                        throw new ConfigurationException(msg);
+                    }
 #if USE_TOY_MODEL
                         Models[i] = new GriddedCatchmentToyModel(MyWork.Cells[i]);
 #else
-                        Models[i] = GridModelHelper.CreateCellEvaluator(cellDefinition);
+                    Models[i] = GridModelHelper.CreateCellEvaluator(cellDefinition);
 #endif
-                    }
-                    Log.DebugFormat("Rank {0}: models created", WorldRank);
                 }
+                Log.DebugFormat("Rank {0}: models created", WorldRank);
             }
         }
 
@@ -279,7 +280,7 @@ namespace TIME.Metaheuristics.Parallel
             CreateCommunicators(workAllocator);
 
             // we only need to preserve some data from the work allocator
-            MyWork = workAllocator.WorkPackage;
+            SetWorkPackage(workAllocator.WorkPackage);
             NumCatchmentResultsPerWorker = workAllocator.NumCatchmentResultsPerWorker;
             NumGriddedResultsPerWorker = workAllocator.NumGriddedResultsPerWorker;
             TotalCellCount = workAllocator.GriddedResultCount;
