@@ -78,10 +78,9 @@ namespace TIME.Metaheuristics.Parallel
         public Tools.Collections.SerializableDictionary<string, MpiTimeSeries>[] Gather(Tools.Collections.SerializableDictionary<string, MpiTimeSeries> serializableDictionary, int root, int sender)
         {
             throw new NotImplementedException("This is not essential to test the netCDF issue; will need implementation later on for other purposes.");
-            if (sender == root)
-            {
-                
-            }
+            //if (sender == root)
+            //{
+            //}
         }
 
         public int GetRank(int worldRank)
