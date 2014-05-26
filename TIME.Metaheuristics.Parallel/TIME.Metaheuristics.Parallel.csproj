@@ -143,9 +143,6 @@
     <Reference Include="MPI">
       <HintPath>..\packages\MPI.NET.1.2.0.0\lib\net40\MPI.dll</HintPath>
     </Reference>
-    <Reference Include="MPIUtils">
-      <HintPath>..\packages\MPI.NET.1.2.0.0\lib\net40\MPIUtils.dll</HintPath>
-    </Reference>
     <Reference Include="netcdfAll">
       <HintPath>..\packages\CSIRO.netCDF_IKVM.4.3.20.1\lib\net40\netcdfAll.dll</HintPath>
     </Reference>
