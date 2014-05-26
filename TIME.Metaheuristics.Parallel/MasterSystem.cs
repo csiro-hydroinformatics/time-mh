@@ -14,7 +14,6 @@ using CSIRO.Metaheuristics.RandomNumberGenerators;
 using CSIRO.Metaheuristics.Utils;
 using TIME.Metaheuristics.Parallel.ExtensionMethods;
 using TIME.Metaheuristics.Parallel.Objectives;
-//using MPI;
 using TIME.DataTypes;
 using TIME.Tools.Metaheuristics.Optimization;
 using TIME.Tools.Metaheuristics.Persistence;
@@ -70,37 +69,30 @@ namespace TIME.Metaheuristics.Parallel
         public MasterSystem(ProgramArguments arguments, int size)
         {
             int rank = 0;
-        //DebugHelpers.MpiSleep(10000);
             LoadOptimiserParams(arguments);
             sceOptions = SceOptions.RndInSubComplex;
             if (arguments.SceOptions == "full")
                 sceOptions |= SceOptions.ReflectionRandomization;
-        //DebugHelpers.MpiSleep(11000);
 
             OutputPath = arguments.OutputPath;
             // Ensure existance of some locations that are assumed to exist when writing the results
             if (!OutputPath.Exists)
                 OutputPath.Create();
 
-        //DebugHelpers.MpiSleep(12000);
             RosenbrockIterations = arguments.RosenbrockIterations.Clamp(MinRosenbrockIterations, MaxRosenbrockIterations);
             WallClock = arguments.WallClockHours.Clamp(MinWallClock, MaxWallClock);
             ConvergenceCriterionCvThreshold = arguments.ConvergenceCriterionCvThreshold.Clamp(MinConvergenceThreshold, MaxConvergenceThreshold);
             TerminationCriterion = (TerminationCriteria) Enum.Parse(typeof (TerminationCriteria), arguments.TerminationCriterion);
             OptimisationMethod = (OptimisationMethods) Enum.Parse(typeof (OptimisationMethods), arguments.OptimisationMethod);
-        //DebugHelpers.MpiSleep(13000);
             SeedParametersFile = arguments.ParameterDefinitions.FullName;
             LogFileName = Path.Combine(arguments.OutputPath.FullName, arguments.LogFile);
             OutputFileName = Path.Combine(arguments.OutputPath.FullName, arguments.ResultsFile);
             TemplateParameterSet = GridModelHelper.LoadParameterSpace(arguments.ParameterDefinitions.FullName);
             MpiSysConfig[] seedsPopulation = GridModelHelper.LoadParameterSets(arguments.SeedParameterSets, TemplateParameterSet);
-        //DebugHelpers.MpiSleep(14000);
             evaluator = new MultiCatchmentCompositeObjectiveEvaluator(
                 arguments.GlobalDefinition, arguments.ObjectiveDefinition, arguments.CreateCompositeEvaluator(), rank, size);
-        //DebugHelpers.MpiSleep(15000);
             InMemoryLogger = new InMemoryLogger();
             optimisationEngine = CreateEngine(evaluator, TemplateParameterSet, seedsPopulation, InMemoryLogger, arguments.Name, arguments.InitString);
-        //DebugHelpers.MpiSleep(16000);
         }
 
         #region Properties
