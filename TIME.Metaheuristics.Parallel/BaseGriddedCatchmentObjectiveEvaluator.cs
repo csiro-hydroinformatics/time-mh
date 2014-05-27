@@ -537,7 +537,6 @@ namespace TIME.Metaheuristics.Parallel
         /// </returns>
         protected Dictionary<string, SerializableDictionary<string, MpiTimeSeries>> EvaluateModels(MpiSysConfig parameters)
         {
-
             OnBeforeModelRuns();
 
             // For each catchment we may have 1 or more cells, hence the List<MpiObjectiveScores> to store the variable list of scores for each cell
