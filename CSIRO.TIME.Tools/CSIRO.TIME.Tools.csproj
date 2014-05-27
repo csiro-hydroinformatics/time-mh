@@ -43,8 +43,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CSIRO.Metaheuristics.0.7.1.0\lib\net40\CSIRO.Sys.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Utilities">
-      <HintPath>..\packages\CSIRO.Utilities.0.7.0.6\lib\net40\CSIRO.Utilities.dll</HintPath>
+    <Reference Include="CSIRO.Utilities, Version=0.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CSIRO.Utilities.0.7.1.0\lib\net40\CSIRO.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.AWT.WinForms, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
