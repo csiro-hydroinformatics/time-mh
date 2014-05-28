@@ -65,6 +65,10 @@ namespace TIME.Metaheuristics.Parallel
         // Note that the allowed values must match the tags in MasterProgram.OptimisationMethods
         //[EnumeratedValueArgument(typeof(string), 'k', "optimisationMethod", AllowedValues = "Sce;RosenSce", Description = "Optimisation method to use", Optional = true, DefaultValue = "Sce")] 
         public abstract string OptimisationMethod{ get; set; }
+
+        // Determines if the application runs in benchmark mode. In this mode, the models are evaluated only to generate the initial population. 
+        // This gives a deterministic number of model runs, determined by the population size in the init string.
+        public abstract bool BenchmarkMode { get; set; }
     }
 }
 
