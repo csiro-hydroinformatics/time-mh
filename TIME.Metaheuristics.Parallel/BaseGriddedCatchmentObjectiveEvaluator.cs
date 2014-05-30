@@ -18,6 +18,7 @@ using TIME.Tools.Collections;
 using TIME.Tools.Metaheuristics;
 using TIME.Tools.Metaheuristics.Persistence;
 using TIME.Tools.Metaheuristics.Persistence.Gridded;
+using System.Threading;
 
 namespace TIME.Metaheuristics.Parallel
 {
@@ -72,6 +73,13 @@ namespace TIME.Metaheuristics.Parallel
             GlobalDefinition = SerializationHelper.XmlDeserialize<GlobalDefinition>(globalDefinitionFileInfo);
             Log.DebugFormat("Rank {0}: global definition complete", WorldRank);
             AllocateWork(new BalancedCellCountAllocator(GlobalDefinition, worldCommunicator));
+
+            //if (rank == 0)
+            //{
+                //Log.Debug("Root: Sleeping");
+                //Thread.Sleep(new TimeSpan(0,1,0));
+                //Log.Debug("Root: Awake");
+            //}
         }
 
         /// <summary>
@@ -226,7 +234,12 @@ namespace TIME.Metaheuristics.Parallel
 #if USE_TOY_MODEL
                         Models[i] = new GriddedCatchmentToyModel(MyWork.Cells[i]);
 #else
+                    //Log.DebugFormat("Rank {0}: Sleeping", rank);
+                    //Thread.Sleep(10000);
+                    //Log.DebugFormat("Rank {0}: Awake", rank);
+                    Log.DebugFormat("Rank {0}: creating cell evaluator", rank);
                     Models[i] = GridModelHelper.CreateCellEvaluator(cellDefinition);
+                    Log.DebugFormat("Rank {0}: Evaluator created", rank);
 #endif
                 }
                 Log.DebugFormat("Rank {0}: models created", WorldRank);
@@ -491,15 +504,20 @@ namespace TIME.Metaheuristics.Parallel
         /// <param name="parameters"> Input parameters for the work unit </param>
         protected void DoWork(MpiSysConfig parameters)
         {
-            Debug.Assert(Models != null);
+            //Log.DebugFormat("Rank {0}: DoWork", WorldRank);
+            //Log.DebugFormat("Rank {0}: sleeping", WorldRank);
+            //Thread.Sleep(new TimeSpan(0,1,0));
+            //Debug.Assert(Models != null);
 
             // execute our list of models, accumulating the results into the appropriate partial result buffer.
+            Log.DebugFormat("Rank {0}: Executing models", WorldRank);
 #if CELL_WEIGHTED_SUMS
             Dictionary<string, SerializableDictionary<string, MpiTimeSeries>> partialCatchmentResultsByCatchmentId = EvaluateModels(parameters);
 #else
             Dictionary<string, List<SerializableDictionary<string, MpiTimeSeries>>> partialCatchmentResultsByCatchmentId = EvaluateModels(parameters);
 #endif
             // For each catchment, accumulate the partial results for each catchment back to the catchment-coordinator.
+            Log.DebugFormat("Rank {0}: Accumulating catchment results", WorldRank);
             MpiObjectiveScores[] finalCatchmentResults = AccumulateCatchmentResultsInCatchmentCoordinator(
                 partialCatchmentResultsByCatchmentId, parameters);
 
@@ -535,10 +553,13 @@ namespace TIME.Metaheuristics.Parallel
             Dictionary<string, SerializableDictionary<string, MpiTimeSeries>> partialCatchmentResults =
                 new Dictionary<string, SerializableDictionary<string, MpiTimeSeries>>(MyWork.Catchments.Count);
 
+            //int i = 0;
             foreach (var model in Models)
             {
+                //Log.DebugFormat("Rank {0}: Executing model {1}", WorldRank, i);
                 SerializableDictionary<string, MpiTimeSeries> result = model.Execute(parameters);
                 SerializableDictionary<string, MpiTimeSeries> existingResults;
+                //Log.DebugFormat("Rank {0}: Model {1} done. Saving results", WorldRank, i);
                 if (partialCatchmentResults.TryGetValue(model.CatchmentId, out existingResults))
                 {
                     // add each weighted time series to the partial results
@@ -550,6 +571,8 @@ namespace TIME.Metaheuristics.Parallel
                     // no partial results yet, use the new result as the partial result buffer.
                     partialCatchmentResults.Add(model.CatchmentId, result);
                 }
+
+                //i++;
             }
 
             return partialCatchmentResults;
