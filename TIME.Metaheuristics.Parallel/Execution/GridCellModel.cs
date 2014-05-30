@@ -48,7 +48,7 @@ namespace TIME.Metaheuristics.Parallel.Execution
                 return results; 
 #if HANDLE_MODEL_EXCEPTIONS
             }
-            catch(Exception e)
+            catch(System.Exception e)
             {
                 Log.ErrorFormat("Exception in Catchment {0}, Cell {1}: {2}", CatchmentId, CellId, e.Message);
                 throw;
