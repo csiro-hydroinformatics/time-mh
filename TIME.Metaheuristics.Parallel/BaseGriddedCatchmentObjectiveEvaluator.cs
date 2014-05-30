@@ -296,6 +296,7 @@ namespace TIME.Metaheuristics.Parallel
 #if !CELL_WEIGHTED_SUMS
             CalculateCoordinatorCount();
 #endif
+            Log.DebugFormat("Rank {0}: AllocateWork complete", WorldRank);
         }
 
         private void DebugDumpWorkAllocator(IWorkAllocator workAllocator)
@@ -445,8 +446,9 @@ namespace TIME.Metaheuristics.Parallel
             MpiWorkPacket workPacket = new MpiWorkPacket(SlaveActions.DoWork, parameters);
 
             // Gather the catchment results (one result set per catchment)
-            Log.Debug("Root: asking slaves to run and waiting for catchment results");
+            Log.Debug("Root: broadcasting work packets");
             WorldBroadcast(ref workPacket, 0);
+            Log.Debug("Root: waiting for catchment results");
             catchmentScores = WorldGatherFlattened(new MpiObjectiveScores[0], NumCatchmentResultsPerWorker, 0);
             Debug.Assert(catchmentScores.Length == GlobalDefinition.Count);
             Log.DebugFormat("Root: {0} catchment results are in", catchmentScores.Length);
@@ -462,17 +464,6 @@ namespace TIME.Metaheuristics.Parallel
                 Log.Info(sb);
             }
 
-            //foreach (var catchmentScore in catchmentScores)
-            //    Log.Debug(catchmentScore);
-
-            // gather the gridded results (one per grid cell)
-            // todo: gridded results that are not summarised per catchment.
-            /*
-            Log.Debug("Root: waiting for gridded results");
-            MpiObjectiveScores[] griddedResults = Communicator.world.GatherFlattened(new MpiObjectiveScores[0], NumGriddedResultsPerWorker, 0);
-            Debug.Assert(griddedResults.Length == TotalCellCount);
-            Log.DebugFormat("Root: ***** completed run {0} *****", Iterations);
-            */
 #if BARRIER_AT_ITERATION_END
             Communicator.world.Barrier();
 #endif
