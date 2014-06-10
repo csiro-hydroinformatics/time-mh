@@ -19,7 +19,7 @@ namespace TIME.Metaheuristics.Parallel.Objectives
         /// </summary>
         /// <param name="globalDefinitionFileInfo"> The global definition file info. </param>
         /// <param name="objectivesDefinitionFileInfo"> The objectives definition file info. </param>
-        // <param name="globalCompoundObjectiveDefinitionFileInfo"> The global objective definition file info. This defines the function for compositing scores into the single global score. </param>
+        /// <param name="globalCompoundObjectiveDefinitionFileInfo"> The global objective definition file info. This defines the function for compositing scores into the single global score. </param>
         public MultiCatchmentCompositeObjectiveEvaluator(
             FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, CompositeObjectiveCalculation<MpiSysConfig> compositeCalculation, int rank, int size) : 
             base(Factory.Create(globalDefinitionFileInfo, objectivesDefinitionFileInfo, rank, size), compositeCalculation)

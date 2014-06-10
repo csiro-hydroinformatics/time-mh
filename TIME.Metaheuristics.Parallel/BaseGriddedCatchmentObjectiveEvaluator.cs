@@ -553,7 +553,6 @@ namespace TIME.Metaheuristics.Parallel
             Dictionary<string, SerializableDictionary<string, MpiTimeSeries>> partialCatchmentResults =
                 new Dictionary<string, SerializableDictionary<string, MpiTimeSeries>>(MyWork.Catchments.Count);
 
-            //int i = 0;
             foreach (var model in Models)
             {
                 //Log.DebugFormat("Rank {0}: Executing model {1}", WorldRank, i);
@@ -571,8 +570,6 @@ namespace TIME.Metaheuristics.Parallel
                     // no partial results yet, use the new result as the partial result buffer.
                     partialCatchmentResults.Add(model.CatchmentId, result);
                 }
-
-                //i++;
             }
 
             return partialCatchmentResults;
