@@ -73,13 +73,6 @@ namespace TIME.Metaheuristics.Parallel
             GlobalDefinition = SerializationHelper.XmlDeserialize<GlobalDefinition>(globalDefinitionFileInfo);
             Log.DebugFormat("Rank {0}: global definition complete", WorldRank);
             AllocateWork(new BalancedCellCountAllocator(GlobalDefinition, worldCommunicator));
-
-            //if (rank == 0)
-            //{
-                //Log.Debug("Root: Sleeping");
-                //Thread.Sleep(new TimeSpan(0,1,0));
-                //Log.Debug("Root: Awake");
-            //}
         }
 
         /// <summary>
@@ -234,9 +227,6 @@ namespace TIME.Metaheuristics.Parallel
 #if USE_TOY_MODEL
                         Models[i] = new GriddedCatchmentToyModel(MyWork.Cells[i]);
 #else
-                    //Log.DebugFormat("Rank {0}: Sleeping", rank);
-                    //Thread.Sleep(10000);
-                    //Log.DebugFormat("Rank {0}: Awake", rank);
                     Log.DebugFormat("Rank {0}: creating cell evaluator", rank);
                     Models[i] = GridModelHelper.CreateCellEvaluator(cellDefinition);
                     Log.DebugFormat("Rank {0}: Evaluator created", rank);
@@ -504,11 +494,6 @@ namespace TIME.Metaheuristics.Parallel
         /// <param name="parameters"> Input parameters for the work unit </param>
         protected void DoWork(MpiSysConfig parameters)
         {
-            //Log.DebugFormat("Rank {0}: DoWork", WorldRank);
-            //Log.DebugFormat("Rank {0}: sleeping", WorldRank);
-            //Thread.Sleep(new TimeSpan(0,1,0));
-            //Debug.Assert(Models != null);
-
             // execute our list of models, accumulating the results into the appropriate partial result buffer.
             Log.DebugFormat("Rank {0}: Executing models", WorldRank);
 #if CELL_WEIGHTED_SUMS
@@ -525,14 +510,6 @@ namespace TIME.Metaheuristics.Parallel
             Log.DebugFormat("Rank {0}: submitting {1} final catchment results to master", WorldRank, finalCatchmentResults.Length);
 
             WorldGatherFlattened(finalCatchmentResults, 0);
-
-            // Send the gridded results back from our cell calculations.
-            // todo: gridded results that are not summarised per catchment.
-            /*
-            MpiObjectiveScores[] myGriddedResults = new MpiObjectiveScores[MyWork.Cells.Length];
-            Log.DebugFormat("Rank {0}: submitting {1} final gridded results to master", WorldRank, myGriddedResults.Length);
-            Communicator.world.GatherFlattened(myGriddedResults, 0);
-            */
         }
 
 #if CELL_WEIGHTED_SUMS
@@ -638,9 +615,6 @@ namespace TIME.Metaheuristics.Parallel
 
         private MpiObjectiveScores CalculateCatchmentScores(CatchmentDefinition catchment, SerializableDictionary<string, MpiTimeSeries> catchmentTimeSeries, MpiSysConfig sysConfig)
         {
-            //DateTime start = DateTime.Now;
-            //Log.InfoFormat("CalcCat Elapsed 1: {0}", (DateTime.Now - start).TotalMilliseconds); start = DateTime.Now;
-
             // convert back to the Time.Data.TimeSeries objects for use by the statistics objects.
             SerializableDictionary<string, TimeSeries> convertedCatchmentTimeSeries = new SerializableDictionary<string, TimeSeries>();
             foreach (KeyValuePair<string, MpiTimeSeries> keyValuePair in catchmentTimeSeries)
@@ -648,33 +622,20 @@ namespace TIME.Metaheuristics.Parallel
                 MpiTimeSeries value = keyValuePair.Value;
                 convertedCatchmentTimeSeries.Add(keyValuePair.Key, new TimeSeries(value.Start, value.TimeStep, value.TimeSeries));
             }
-            //Log.InfoFormat("CalcCat Elapsed 2: {0}", (DateTime.Now - start).TotalMilliseconds); start = DateTime.Now;
 
             // make the pre-calculated time series look like a point time series model so it can be used by the statistics evaluator
             PointTimeSeriesSimulationDictionaryAdapter catchmentTimeSeriesAdapter = new PointTimeSeriesSimulationDictionaryAdapter(convertedCatchmentTimeSeries);
 
             catchmentTimeSeriesAdapter.SetPeriod(catchment.Cells[0].ModelRunDefinition.StartDate, catchment.Cells[0].ModelRunDefinition.EndDate);
 
-            //Log.InfoFormat("CalcCat Elapsed 3: {0}", (DateTime.Now - start).TotalMilliseconds); start = DateTime.Now;
             // retrieve the statistics evaluator for this catchment
             Log.DebugFormat("Rank {0}: Catchment '{1}' creating score evaluator", WorldRank, catchment.Id);
             var catchmentScoreEvaluator = GetCatchmentStatisticsEvaluator(catchment, catchmentTimeSeriesAdapter);
 
-            //Log.InfoFormat("CalcCat Elapsed 4: {0}", (DateTime.Now - start).TotalMilliseconds); start = DateTime.Now;
-
             catchmentScoreEvaluator.SetModelRunner(catchmentTimeSeriesAdapter);
             Log.DebugFormat("Rank {0}: Catchment '{1}' evaluating score", WorldRank, catchment.Id);
             MpiObjectiveScores calculateCatchmentScores = new MpiObjectiveScores(catchmentScoreEvaluator.EvaluateScore(catchmentTimeSeriesAdapter, sysConfig), catchment.Id);
-            //foreach (var s in calculateCatchmentScores.scores)
-            //{
-            //    if (s.value.Equals(double.NaN))
-            //    {
-            //        Log.InfoFormat("Score {0},{1} bacame NaN for catchment {2}", s.name, s.text, catchment.Id);
-            //        Log.InfoFormat("Configuration: {0}", calculateCatchmentScores.SystemConfiguration);
-            //    }
-            //}
 
-            //Log.InfoFormat("CalcCat Elapsed 5: {0}", (DateTime.Now - start).TotalMilliseconds); start = DateTime.Now;
             return calculateCatchmentScores;
         }
 
