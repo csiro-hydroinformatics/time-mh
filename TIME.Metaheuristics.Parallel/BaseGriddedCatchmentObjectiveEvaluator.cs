@@ -12,7 +12,6 @@ using TIME.Metaheuristics.Parallel.Execution;
 using TIME.Metaheuristics.Parallel.ExtensionMethods;
 using TIME.Metaheuristics.Parallel.Objectives;
 using TIME.Metaheuristics.Parallel.WorkAllocation;
-//using MPI;
 using TIME.DataTypes;
 using TIME.Tools.Collections;
 using TIME.Tools.Metaheuristics;
@@ -521,7 +520,7 @@ namespace TIME.Metaheuristics.Parallel
         /// A dictionary of results, indexed by catchment Id, for the cells being calculated on the current process. 
         /// Each dictionary value contains the partial weighted sum of cell results for that catchment
         /// </returns>
-        protected Dictionary<string, SerializableDictionary<string, MpiTimeSeries>> EvaluateModels(MpiSysConfig parameters)
+        protected virtual Dictionary<string, SerializableDictionary<string, MpiTimeSeries>> EvaluateModels(MpiSysConfig parameters)
         {
             OnBeforeModelRuns();
 

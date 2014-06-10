@@ -26,7 +26,7 @@ namespace TIME.Metaheuristics.Parallel
     ///   Code for both the master (MPI.Communicator.world.Rank == 0) and worker/slave processes (rank > 0) is contained here.
     ///   Loosely corresponds to CalibrateParallelModel.MultiCatchmentCompositeObjectiveCalculation and MpiObjectiveEvaluator.
     /// </summary>
-    internal sealed class MpiGriddedCatchmentObjectiveEvaluator : BaseGriddedCatchmentObjectiveEvaluator
+    public class MpiGriddedCatchmentObjectiveEvaluator : BaseGriddedCatchmentObjectiveEvaluator
     {
         public MpiGriddedCatchmentObjectiveEvaluator(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, int rank)
             : base(globalDefinitionFileInfo, objectivesDefinitionFileInfo, rank, Communicator.world.Size, new MpiWorldIntracommunicatorProxy())
