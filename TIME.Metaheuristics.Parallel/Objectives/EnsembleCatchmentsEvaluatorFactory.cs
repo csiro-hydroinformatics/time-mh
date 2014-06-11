@@ -6,17 +6,21 @@ using System.Text;
 
 namespace TIME.Metaheuristics.Parallel.Objectives
 {
-
     public enum EvaluatorEnsembleType
     {
         MPI,
         Serial
     }
+
     public class EnsembleCatchmentsEvaluatorFactory
     {
         public EvaluatorEnsembleType EnsembleType = EvaluatorEnsembleType.MPI;
 
-        public BaseGriddedCatchmentObjectiveEvaluator Create(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, int rank, int size)
+        public BaseGriddedCatchmentObjectiveEvaluator Create(
+            FileInfo globalDefinitionFileInfo, 
+            FileInfo objectivesDefinitionFileInfo,
+            int rank,
+            int size)
         {
             switch (EnsembleType)
             {

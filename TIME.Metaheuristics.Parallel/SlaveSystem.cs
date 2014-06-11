@@ -21,15 +21,19 @@ namespace TIME.Metaheuristics.Parallel
         private readonly FileInfo objectivesDefinition;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SlaveSystem"/> class.
+        /// Initializes a new instance of the <see cref="SlaveSystem" /> class.
         /// </summary>
         /// <param name="globalDefinitionFileInfo">The global definition file info.</param>
         /// <param name="objectivesDefinitionFileInfo">The objectives definition file info.</param>
-        public SlaveSystem(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, int rank, int size)
+        /// <param name="mpiObjectiveEvaluator">The mpi objective evaluator.</param>
+        /// <exception cref="System.ArgumentNullException">mpiObjectiveEvaluator</exception>
+        public SlaveSystem(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, BaseGriddedCatchmentObjectiveEvaluator mpiObjectiveEvaluator)
         {
+            if (mpiObjectiveEvaluator == null)
+                throw new ArgumentNullException("mpiObjectiveEvaluator");
             this.globalDefinitionFileInfo = globalDefinitionFileInfo;
             objectivesDefinition = objectivesDefinitionFileInfo;
-            MpiSlave = MultiCatchmentCompositeObjectiveEvaluator.Factory.Create(globalDefinitionFileInfo, objectivesDefinition, rank, size);
+            MpiSlave = mpiObjectiveEvaluator;
         }
 
         public BaseGriddedCatchmentObjectiveEvaluator MpiSlave;
