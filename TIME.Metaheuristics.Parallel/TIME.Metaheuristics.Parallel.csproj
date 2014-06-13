@@ -158,21 +158,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TIME">
-      <HintPath>..\packages\TIME_test_nuget.0.1.4\lib\net40\TIME.dll</HintPath>
-    </Reference>
-    <Reference Include="TIME.Models.RainfallRunoff">
-      <HintPath>..\packages\TIME_test_nuget.0.1.4\lib\net40\TIME.Models.RainfallRunoff.dll</HintPath>
-    </Reference>
-    <Reference Include="TIME.Tools">
-      <HintPath>..\packages\TIME_test_nuget.0.1.4\lib\net40\TIME.Tools.dll</HintPath>
-    </Reference>
-    <Reference Include="TIME.Tools.Metaheuristics">
-      <HintPath>..\packages\TIME_test_nuget.0.1.4\lib\net40\TIME.Tools.Metaheuristics.dll</HintPath>
-    </Reference>
-    <Reference Include="TIME.Tools.Metaheuristics.Tests">
-      <HintPath>..\packages\TIME_test_nuget.0.1.4\lib\net40\TIME.Tools.Metaheuristics.Tests.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SerialGriddedCatchmentObjectiveEvaluator.cs" />
@@ -223,6 +208,28 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TIME\TIME.Models.RainfallRunoff\TIME.Models.RainfallRunoff.csproj">
+      <Project>{EC30295D-0CA2-45AE-A133-D949C4771CA1}</Project>
+      <Name>TIME.Models.RainfallRunoff</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TIME\TIME.Tools.Metaheuristics.Tests\TIME.Tools.Metaheuristics.Tests.csproj">
+      <Project>{93C14362-649D-4D2E-98E8-ED190CED49A4}</Project>
+      <Name>TIME.Tools.Metaheuristics.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TIME\TIME.Tools.Metaheuristics\TIME.Tools.Metaheuristics.csproj">
+      <Project>{2B68A567-C043-4D91-95D8-020D98B2E41E}</Project>
+      <Name>TIME.Tools.Metaheuristics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TIME\TIME.Tools\TIME.Tools.csproj">
+      <Project>{3730D225-7886-48ED-B40B-BE726CF52DA5}</Project>
+      <Name>TIME.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TIME\TIME\TIME.csproj">
+      <Project>{EEC5CF45-EBEE-4CEB-9335-A383C4749688}</Project>
+      <Name>TIME</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
