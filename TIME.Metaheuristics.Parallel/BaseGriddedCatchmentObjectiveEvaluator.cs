@@ -53,8 +53,8 @@ namespace TIME.Metaheuristics.Parallel
         /// <param name="globalDefinitionFileInfo">The global definition file info.</param>
         /// <param name="objectivesDefinitionFileInfo">The objectives definition file info.</param>
         /// <param name="rank">The rank of the process in the 'world'</param>
-        /// <param name="size"></param>
-        /// <param name="worldCommunicator"></param>
+        /// <param name="size">World communicator size</param>
+        /// <param name="worldCommunicator">The world communicator</param>
         protected BaseGriddedCatchmentObjectiveEvaluator(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, int rank, int size, IIntracommunicatorProxy worldCommunicator)
         {
             this.rank = rank;

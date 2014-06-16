@@ -25,7 +25,7 @@ namespace TIME.Metaheuristics.Parallel.Objectives
             switch (EnsembleType)
             {
                 case EvaluatorEnsembleType.MPI:
-                    return new MpiGriddedCatchmentObjectiveEvaluator(globalDefinitionFileInfo, objectivesDefinitionFileInfo, rank);
+                    return new MpiGriddedCatchmentObjectiveEvaluator(globalDefinitionFileInfo, objectivesDefinitionFileInfo);
                 case EvaluatorEnsembleType.Serial:
                     return new SerialGriddedCatchmentObjectiveEvaluator(globalDefinitionFileInfo, objectivesDefinitionFileInfo, rank, size);
                 default:

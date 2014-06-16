@@ -28,10 +28,9 @@ namespace TIME.Metaheuristics.Parallel
     /// </summary>
     public class MpiGriddedCatchmentObjectiveEvaluator : BaseGriddedCatchmentObjectiveEvaluator
     {
-        public MpiGriddedCatchmentObjectiveEvaluator(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, int rank)
-            : base(globalDefinitionFileInfo, objectivesDefinitionFileInfo, rank, Communicator.world.Size, new MpiWorldIntracommunicatorProxy())
+        public MpiGriddedCatchmentObjectiveEvaluator(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo)
+            : base(globalDefinitionFileInfo, objectivesDefinitionFileInfo, Communicator.world.Rank, Communicator.world.Size, new MpiWorldIntracommunicatorProxy())
         {
-            if(rank != GetWorldRank()) throw new ArgumentException(String.Format("Detected inconsistent MPI rank specifications; passed {0} via constructor, but get {1} World.Rank", rank, GetWorldRank()));
         }
 
         internal override IIntracommunicatorProxy CreateIntracommunicatorProxy(IGroupProxy catchmentGroup)
