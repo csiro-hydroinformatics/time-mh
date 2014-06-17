@@ -462,9 +462,6 @@ namespace TIME.Metaheuristics.Parallel
                 Log.Info(sb);
             }
 
-#if BARRIER_AT_ITERATION_END
-            Communicator.world.Barrier();
-#endif
             Iterations++;
         }
 

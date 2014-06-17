@@ -83,13 +83,7 @@ namespace TIME.Metaheuristics.Parallel
                 Log.DebugFormat("Rank {0}: {1}", WorldRank, SlaveActions.ActionNames[workPacket.Command]);
 
                 if (workPacket.Command == SlaveActions.DoWork)
-                {
                     DoWork(workPacket.Parameters);
-
-#if BARRIER_AT_ITERATION_END
-                    Communicator.world.Barrier();
-#endif
-                }
             }
         }
 
