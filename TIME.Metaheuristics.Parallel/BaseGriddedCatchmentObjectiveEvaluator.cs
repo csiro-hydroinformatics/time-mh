@@ -35,7 +35,6 @@ namespace TIME.Metaheuristics.Parallel
 
         private MpiObjectiveScores[] catchmentScores;
         private bool disposed = false;
-        private WorkPackage myWork;
 
         /// <summary>
         ///   Contains the catchment communicators used to collate results for a catchment. Indexed by catchment CatchmentId
@@ -194,19 +193,16 @@ namespace TIME.Metaheuristics.Parallel
         /// <summary>
         ///   For slave ranks, this contains metadata about the work allocated to the slave
         /// </summary>
-        private WorkPackage MyWork
-        {
-            get { return myWork; }
-        }
+        protected WorkPackage MyWork { get; set; }
 
-        private void SetWorkPackage(WorkPackage work)
+        protected virtual void SetWorkPackage(WorkPackage work)
         {
-            myWork = work;
+            MyWork = work;
 
             // Create the models
-            if (myWork != null && myWork.Cells.Length > 0)
+            if (MyWork != null && MyWork.Cells.Length > 0)
             {
-                Log.DebugFormat("Rank {0}: creating {1} model evaluators", WorldRank, myWork.Cells.Length);
+                Log.DebugFormat("Rank {0}: creating {1} model evaluators", WorldRank, MyWork.Cells.Length);
                 Models = new ICatchmentCellModelRunner[MyWork.Cells.Length];
                 for (int i = 0; i < MyWork.Cells.Length; i++)
                 {
