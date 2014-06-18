@@ -15,7 +15,6 @@ namespace TIME.Metaheuristics.Parallel.WorkAllocation
         }
 
         public HashSet<CatchmentDefinition> Catchments { get; private set; }
-        // todo: this will need to contain an array of XmlSerialisableModelRunDefinition instances, one per cell (or per catchment)?
         public CellDefinition[] Cells { get; private set; }
     }
 }

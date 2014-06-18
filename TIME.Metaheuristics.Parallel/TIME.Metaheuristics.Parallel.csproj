@@ -160,6 +160,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Execution\ICatchmentEnsembleModelRunner.cs" />
     <Compile Include="SerialGriddedCatchmentObjectiveEvaluator.cs" />
     <Compile Include="MpiGriddedCatchmentObjectiveEvaluator.cs" />
     <Compile Include="GridModelHelper.cs" />
