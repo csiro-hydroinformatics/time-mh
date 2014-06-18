@@ -29,6 +29,7 @@ namespace TIME.Metaheuristics.Parallel.Objectives
             base(Factory.Create(globalDefinitionFileInfo, objectivesDefinitionFileInfo, rank, size), compositeCalculation)
         {
             mpiGridEval = (BaseGriddedCatchmentObjectiveEvaluator)systemsEvaluator;
+            mpiGridEval.AllocateWork();
         }
 
         private BaseGriddedCatchmentObjectiveEvaluator mpiGridEval;

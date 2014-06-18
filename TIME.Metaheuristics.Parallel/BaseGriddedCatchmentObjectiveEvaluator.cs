@@ -44,7 +44,7 @@ namespace TIME.Metaheuristics.Parallel
 
         protected int rank;
         protected int size;
-
+        private IIntracommunicatorProxy world = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseGriddedCatchmentObjectiveEvaluator"/> class.
@@ -56,6 +56,7 @@ namespace TIME.Metaheuristics.Parallel
         /// <param name="worldCommunicator">The world communicator</param>
         protected BaseGriddedCatchmentObjectiveEvaluator(FileInfo globalDefinitionFileInfo, FileInfo objectivesDefinitionFileInfo, int rank, int size, IIntracommunicatorProxy worldCommunicator)
         {
+            // funny smell: WorldRank and rank are the same thing, always. Should remove one.
             this.rank = rank;
             this.size = size;
             WorldRank = GetWorldRank();
@@ -66,11 +67,11 @@ namespace TIME.Metaheuristics.Parallel
 
             ObjectiveDefinitionFileName = objectivesDefinitionFileInfo.FullName;
 
-            // todo: should this be performed once only on root, and then broadcast? Wait and see what data the actual model needs to load.
             Log.DebugFormat("Rank {0}: Loading global definition", WorldRank);
             GlobalDefinition = SerializationHelper.XmlDeserialize<GlobalDefinition>(globalDefinitionFileInfo);
             Log.DebugFormat("Rank {0}: global definition complete", WorldRank);
-            AllocateWork(new BalancedCellCountAllocator(GlobalDefinition, worldCommunicator));
+
+            world = worldCommunicator;
         }
 
         /// <summary>
@@ -260,6 +261,14 @@ namespace TIME.Metaheuristics.Parallel
         #endregion
 
         #region Common methods
+
+        /// <summary>
+        /// Allocates and distributes catchment and cell calculations to all available workers using the default allocation method.
+        /// </summary>
+        public void AllocateWork()
+        {
+            AllocateWork(new BalancedCellCountAllocator(GlobalDefinition, world));
+        }
 
         /// <summary>
         /// Allocates work and distributes the work packages to all workers.

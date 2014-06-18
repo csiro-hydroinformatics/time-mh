@@ -34,6 +34,9 @@ namespace TIME.Metaheuristics.Parallel
             this.globalDefinitionFileInfo = globalDefinitionFileInfo;
             objectivesDefinition = objectivesDefinitionFileInfo;
             MpiSlave = mpiObjectiveEvaluator;
+
+            // every worker must participate in work allocation
+            MpiSlave.AllocateWork();
         }
 
         public BaseGriddedCatchmentObjectiveEvaluator MpiSlave;
