@@ -2,10 +2,11 @@
 using CSIRO.Metaheuristics.Parallel.SystemConfigurations;
 using TIME.Metaheuristics.Parallel.WorkAllocation;
 using TIME.Tools.Collections;
+using System;
 
 namespace TIME.Metaheuristics.Parallel.Execution
 {
-    public interface ICatchmentEnsembleModelRunner
+    public interface ICatchmentEnsembleModelRunner : IDisposable
     {
         /// <summary>
         /// Gets the work package assigned to the ensemble.
