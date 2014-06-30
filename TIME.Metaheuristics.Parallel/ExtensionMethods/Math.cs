@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TIME.Metaheuristics.Parallel.ExtensionMethods
 {
-    static internal class Math
+    static public class Math
     {
         public static T Clamp<T>(this T val, T min, T max) where T : IComparable<T>
         {
