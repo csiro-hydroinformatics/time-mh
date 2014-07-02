@@ -309,17 +309,17 @@ namespace TIME.Metaheuristics.Parallel
         private void DebugDumpWorkAllocator(IWorkAllocator workAllocator)
         {
 #if DEBUG_MODELS
-            Log.DebugFormat("*Rank {0}: gridded result count = {1}", WorldRank, workAllocator.GriddedResultCount);
+            Log.DebugFormat("Rank {0}: gridded result count = {1}", WorldRank, workAllocator.GriddedResultCount);
             for (int i = 0; i < GetWorldSize(); i++)
             {
-                Log.DebugFormat("*Rank {0} sees {2} catchment results for rank {1}", WorldRank, i, workAllocator.NumCatchmentResultsPerWorker[i]);
-                Log.DebugFormat("*Rank {0} sees {2} gridded results for rank {1}", WorldRank, i, workAllocator.NumGriddedResultsPerWorker[i]);
+                Log.DebugFormat("Rank {0} sees {2} catchment results for rank {1}", WorldRank, i, workAllocator.NumCatchmentResultsPerWorker[i]);
+                Log.DebugFormat("Rank {0} sees {2} gridded results for rank {1}", WorldRank, i, workAllocator.NumGriddedResultsPerWorker[i]);
             }
 
             foreach (CatchmentDefinition catchment in GlobalDefinition)
             {
                 HashSet<int> ranks = workAllocator.RanksByCatchment[catchment.Id];
-                string msg = String.Format("*Rank {0}: Catchment {1} has {2} ranks: ", WorldRank, catchment.Id, ranks.Count);
+                string msg = String.Format("Rank {0}: Catchment {1} has {2} ranks: ", WorldRank, catchment.Id, ranks.Count);
                 foreach (int rank in ranks)
                     msg += String.Format("{0}, ", rank);
                 Log.DebugFormat(msg);
