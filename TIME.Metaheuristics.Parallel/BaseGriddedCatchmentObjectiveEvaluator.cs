@@ -68,7 +68,42 @@ namespace TIME.Metaheuristics.Parallel
             ObjectiveDefinitionFileName = objectivesDefinitionFileInfo.FullName;
 
             Log.DebugFormat("Rank {0}: Loading global definition", WorldRank);
-            GlobalDefinition = SerializationHelper.XmlDeserialize<GlobalDefinition>(globalDefinitionFileInfo);
+
+            //Added by Bill Wang on 27/10/2014 to read split catchment-based calibration definition files
+            if (globalDefinitionFileInfo.FullName.EndsWith(".csv", true, null))
+            {
+                StreamReader sr = null;
+                GlobalDefinition = new GlobalDefinition();
+                try
+                {
+                    sr = new StreamReader(globalDefinitionFileInfo.FullName);
+                    sr.ReadLine(); //skip the header line
+                    for (string line = sr.ReadLine(); line != null; line = sr.ReadLine())
+                    {
+                        FileInfo catchmentFileInfo = new FileInfo(line.Split(new char[] { ',' })[1]);
+                        GlobalDefinition catchmentDef = SerializationHelper.XmlDeserialize<GlobalDefinition>(catchmentFileInfo);
+                        foreach (var cat in catchmentDef.Catchments)
+                        {
+                            GlobalDefinition.AddCatchment(cat);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e.ToString());
+                    throw e;
+                }
+                finally
+                {
+                    if (sr != null)
+                        sr.Close();
+                }
+            }
+            else
+            {
+                GlobalDefinition = SerializationHelper.XmlDeserialize<GlobalDefinition>(globalDefinitionFileInfo);
+            }
+            
             Log.DebugFormat("Rank {0}: global definition complete", WorldRank);
 
             world = worldCommunicator;
