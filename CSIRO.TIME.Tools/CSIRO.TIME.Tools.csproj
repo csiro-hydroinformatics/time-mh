@@ -35,17 +35,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\CSIRO.Data.netCDF.0.5.0.4\lib\net40\CSIRO.Data.netCDF.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Metaheuristics, Version=0.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSIRO.Metaheuristics, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.3.0\lib\net40\CSIRO.Metaheuristics.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.9.0\lib\net40\CSIRO.Metaheuristics.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Sys, Version=0.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSIRO.Sys, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.3.0\lib\net40\CSIRO.Sys.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.9.0\lib\net40\CSIRO.Sys.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Utilities, Version=0.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSIRO.Utilities, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Utilities.0.7.3.0\lib\net40\CSIRO.Utilities.dll</HintPath>
+      <HintPath>..\packages\CSIRO.Utilities.0.7.9.0\lib\net40\CSIRO.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.AWT.WinForms, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -172,23 +172,23 @@
     <Reference Include="System.Xml" />
     <Reference Include="TIME, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TIME_test_nuget.0.1.6\lib\net40\TIME.dll</HintPath>
+      <HintPath>..\packages\TIME_test_nuget.0.1.7\lib\net40\TIME.dll</HintPath>
     </Reference>
     <Reference Include="TIME.Models.RainfallRunoff, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TIME_test_nuget.0.1.6\lib\net40\TIME.Models.RainfallRunoff.dll</HintPath>
+      <HintPath>..\packages\TIME_test_nuget.0.1.7\lib\net40\TIME.Models.RainfallRunoff.dll</HintPath>
     </Reference>
     <Reference Include="TIME.Tools, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TIME_test_nuget.0.1.6\lib\net40\TIME.Tools.dll</HintPath>
+      <HintPath>..\packages\TIME_test_nuget.0.1.7\lib\net40\TIME.Tools.dll</HintPath>
     </Reference>
     <Reference Include="TIME.Tools.Metaheuristics, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TIME_test_nuget.0.1.6\lib\net40\TIME.Tools.Metaheuristics.dll</HintPath>
+      <HintPath>..\packages\TIME_test_nuget.0.1.7\lib\net40\TIME.Tools.Metaheuristics.dll</HintPath>
     </Reference>
     <Reference Include="TIME.Tools.Metaheuristics.Tests, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TIME_test_nuget.0.1.6\lib\net40\TIME.Tools.Metaheuristics.Tests.dll</HintPath>
+      <HintPath>..\packages\TIME_test_nuget.0.1.7\lib\net40\TIME.Tools.Metaheuristics.Tests.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +196,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
