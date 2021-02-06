@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CalibrateGriddedModel</RootNamespace>
     <AssemblyName>CalibrateGriddedModel</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -156,7 +156,7 @@
     <Reference Include="Microsoft.Hpc.Scheduler, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\ThirdParty\Microsoft.Hpc.Scheduler.dll</HintPath>
     </Reference>
-    <Reference Include="TIME">
+    <!-- <Reference Include="TIME">
       <HintPath>..\..\Solutions\packages\TIME_test_nuget.0.1\lib\net40\TIME.dll</HintPath>
     </Reference>
     <Reference Include="TIME.Metaheuristics.Parallel">
@@ -170,7 +170,7 @@
     </Reference>
     <Reference Include="TIME.Tools.Metaheuristics">
       <HintPath>..\..\Solutions\packages\TIME_test_nuget.0.1\lib\net40\TIME.Tools.Metaheuristics.dll</HintPath>
-    </Reference>
+    </Reference> -->
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AwraModelFacade.cs" />

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.13.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.13.1\build\NUnit.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,8 +11,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CSIRO.TIME.Tools</RootNamespace>
     <AssemblyName>CSIRO.TIME.Tools</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,121 +34,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSIRO.Data.netCDF, Version=0.5.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Data.netCDF.0.5.0.4\lib\net40\CSIRO.Data.netCDF.dll</HintPath>
+    <Reference Include="CSIRO.Metaheuristics, Version=0.7.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.13\lib\net472\CSIRO.Metaheuristics.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Metaheuristics, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.9.0\lib\net40\CSIRO.Metaheuristics.dll</HintPath>
+    <Reference Include="CSIRO.Sys, Version=0.7.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSIRO.Sys.0.7.13\lib\net472\CSIRO.Sys.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Sys, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.9.0\lib\net40\CSIRO.Sys.dll</HintPath>
-    </Reference>
-    <Reference Include="CSIRO.Utilities, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Utilities.0.7.9.0\lib\net40\CSIRO.Utilities.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.AWT.WinForms, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.AWT.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Beans, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Beans.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Charsets, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Charsets.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Corba, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Corba.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Core, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Jdbc, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Jdbc.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Management, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Management.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Media, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Media.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Misc, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Misc.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Naming, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Naming.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Remoting, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Remoting.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Security, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.SwingAWT, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.SwingAWT.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Text, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Text.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Tools, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Tools.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Util, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Util.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.API, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.API.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Bind, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.Bind.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Crypto, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Parse, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.Parse.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Transform, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.Transform.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.WebServices, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.WebServices.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.XPath, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.XPath.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.Runtime, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.Runtime.JNI, Version=7.4.5196.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.Runtime.JNI.dll</HintPath>
+    <Reference Include="CSIRO.Utilities, Version=0.7.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSIRO.Utilities.0.7.13\lib\net472\CSIRO.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="IronPython, Version=2.7.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -155,13 +51,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ThirdParty\IronPython\Microsoft.Scripting.dll</HintPath>
     </Reference>
-    <Reference Include="netcdfAll, Version=4.3.20.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.netCDF_IKVM.4.3.20.1\lib\net40\netcdfAll.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.13.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.13.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -170,7 +61,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TIME, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <!-- <Reference Include="TIME, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TIME_test_nuget.0.1.7\lib\net40\TIME.dll</HintPath>
     </Reference>
@@ -189,7 +80,7 @@
     <Reference Include="TIME.Tools.Metaheuristics.Tests, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TIME_test_nuget.0.1.7\lib\net40\TIME.Tools.Metaheuristics.Tests.dll</HintPath>
-    </Reference>
+    </Reference> -->
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelExecution\PythonSimulationStateInitialization.cs" />
@@ -197,15 +88,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit.3.13.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.13.1\build\NUnit.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

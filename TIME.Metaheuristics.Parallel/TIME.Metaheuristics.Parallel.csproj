@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\NUnit.3.13.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.13.1\build\NUnit.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,10 +12,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TIME.Metaheuristics.Parallel</RootNamespace>
     <AssemblyName>TIME.Metaheuristics.Parallel</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProductVersion>12.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,142 +37,53 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSIRO.Data.netCDF">
-      <HintPath>..\packages\CSIRO.Data.netCDF.0.5.0.4\lib\net40\CSIRO.Data.netCDF.dll</HintPath>
+    <Reference Include="CSIRO.Metaheuristics, Version=0.7.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.13\lib\net472\CSIRO.Metaheuristics.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Metaheuristics, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.0.7.9.0\lib\net40\CSIRO.Metaheuristics.dll</HintPath>
+    <Reference Include="CSIRO.Metaheuristics.DataModel, Version=0.7.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSIRO.Metaheuristics.DataModel.0.7.13\lib\net472\CSIRO.Metaheuristics.DataModel.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Metaheuristics.DataModel, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.DataModel.0.7.9.0\lib\net40\CSIRO.Metaheuristics.DataModel.dll</HintPath>
+    <Reference Include="CSIRO.Metaheuristics.Logging, Version=0.7.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSIRO.Metaheuristics.Logging.0.7.13\lib\net472\CSIRO.Metaheuristics.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Metaheuristics.Logging, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.Logging.0.7.9.0\lib\net40\CSIRO.Metaheuristics.Logging.dll</HintPath>
+    <Reference Include="CSIRO.Metaheuristics.Parallel, Version=0.7.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSIRO.Metaheuristics.Parallel.0.7.13\lib\net472\CSIRO.Metaheuristics.Parallel.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Metaheuristics.Parallel, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.Parallel.0.7.9.0\lib\net40\CSIRO.Metaheuristics.Parallel.dll</HintPath>
+    <Reference Include="CSIRO.Metaheuristics.Tests, Version=0.7.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSIRO.Metaheuristics.Tests.0.7.13\lib\net472\CSIRO.Metaheuristics.Tests.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Metaheuristics.Tests, Version=0.7.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.Tests.0.7.3.0\lib\net40\CSIRO.Metaheuristics.Tests.dll</HintPath>
+    <Reference Include="CSIRO.Sys, Version=0.7.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSIRO.Sys.0.7.13\lib\net472\CSIRO.Sys.dll</HintPath>
     </Reference>
-    <Reference Include="CSIRO.Sys, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Metaheuristics.Parallel.0.7.9.0\lib\net40\CSIRO.Sys.dll</HintPath>
-    </Reference>
-    <Reference Include="CSIRO.Utilities, Version=0.7.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\CSIRO.Utilities.0.7.9.0\lib\net40\CSIRO.Utilities.dll</HintPath>
+    <Reference Include="CSIRO.Utilities, Version=0.7.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSIRO.Utilities.0.7.13\lib\net472\CSIRO.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net40\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="IKVM.AWT.WinForms">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.AWT.WinForms.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="IKVM.OpenJDK.Beans">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Beans.dll</HintPath>
+    <Reference Include="MPI, Version=1.4.0.0, Culture=neutral, PublicKeyToken=29b4a045737654fe, processorArchitecture=MSIL">
+      <HintPath>..\packages\MPI.NET.1.4.0\lib\netstandard2.0\MPI.dll</HintPath>
     </Reference>
-    <Reference Include="IKVM.OpenJDK.Charsets">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Charsets.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Corba">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Corba.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Jdbc">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Jdbc.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Management">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Management.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Media">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Media.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Misc">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Misc.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Naming">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Naming.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Remoting">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Remoting.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Security">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.SwingAWT">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.SwingAWT.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Text">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Text.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Tools">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Tools.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Util">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.Util.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.API">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.API.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Bind">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.Bind.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Crypto">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Parse">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.Parse.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Transform">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.Transform.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.WebServices">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.WebServices.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.XPath">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.OpenJDK.XML.XPath.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.Runtime">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="IKVM.Runtime.JNI">
-      <HintPath>..\packages\IKVM.7.4.5196.0\lib\IKVM.Runtime.JNI.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="MPI">
-      <HintPath>..\packages\MPI.NET.1.2.0.0\lib\net40\MPI.dll</HintPath>
-    </Reference>
-    <Reference Include="netcdfAll">
-      <HintPath>..\packages\CSIRO.netCDF_IKVM.4.3.20.1\lib\net40\netcdfAll.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.13.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.13.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TIME, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <!-- <Reference Include="TIME, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TIME_test_nuget.0.1.7\lib\net40\TIME.dll</HintPath>
     </Reference>
@@ -186,7 +102,7 @@
     <Reference Include="TIME.Tools.Metaheuristics.Tests, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TIME_test_nuget.0.1.7\lib\net40\TIME.Tools.Metaheuristics.Tests.dll</HintPath>
-    </Reference>
+    </Reference> -->
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Execution\ICatchmentEnsembleModelRunner.cs" />
@@ -240,6 +156,16 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\NUnit.3.13.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.13.1\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
